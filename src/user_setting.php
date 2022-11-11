@@ -64,12 +64,13 @@
         global $uploadErrors;
         if (empty($uploadErrors) == 1) {
           if (file_exists($target_file_path)) {
+            //TODO: update database file path string.
             echo "<img src=" . $target_file_path . " height=180 width=180 />";
-            //TODO: update image file path string to database for user profile image
+            //TODO: show new database file path string for user profile image
           } elseif (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file_path)) {
             //TODO: update database file path string.
             echo "<img src=" . $target_file_path . " height=180 width=180 />";
-            //TODO: update image file path string to database for user profile image
+            //TODO: show new database file path string for user profile image
           }
         } else {
           echo '<img src="https://brandeps.com/icon-download/M/Music-icon-vector-03.svg" width=180 height=180">';
@@ -82,8 +83,11 @@
       checkForUploadErrors();
       handleUpload($target_file_path);
     } else {
-      echo '<img src="https://brandeps.com/icon-download/M/Music-icon-vector-03.svg" width=180 height=180">';
-      //TODO: load current profile image path from database
+      if (false) { // TODO: update if statement to check database if there is a filpath for user.
+        //TODO: load current profile image path from database
+      } else {
+        echo '<img src="https://brandeps.com/icon-download/M/Music-icon-vector-03.svg" width=180 height=180">';
+      }
     }
     ?>
   </div>
@@ -101,6 +105,7 @@
     'username' => 'name',
     'Email' => '1234abcde@gmail.com'
   ));
+  // TODO: after database integration, actually use the username and email from database.
 
   foreach ($userInfo as $info) {
     echo '<i><p style="font-family:arial; font-size:20px; text-align:center">' . "Username: " . $info['username'] . "</p>";
