@@ -3,21 +3,7 @@
 
 <head>
     <title>Illumination Music - Logout Results</title>
-    <style>
-        p {
-            text-align: center;
-            font-size: 20px;
-        }
-
-        .back {
-            text-align: center;
-            font-size: 20px;
-        }
-
-        .image {
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="css/logout.css" />
 </head>
 
 <body>
