@@ -1,59 +1,59 @@
-<!DOCTYPE html>
-<html>
 
-<head>
-    <title>Uploading...</title>
-</head>
-
-<body>
-    <h1>Uploading File...</h1>
     <?php
-    if (isset($_POST["submit"])) {
-        $target_dir = "uploads/"; //save direcotry
-        $imageName = $_FILES["fileToUpload"]["name"];
-        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-
-        $uploadOk = 1;
-        if (!is_dir($target_dir)) {        //directory check exist or not
-            mkdir($target_dir);
-        }
-        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));    //get file extension
-        $check = getimagesize($target_file);
-        if (file_exists($target_file)) {            //check file already exist
-            echo "Sorry, file already exists.";
-            $uploadOk = 0;
-        } elseif ($_FILES["fileToUpload"]["size"] > 500000) {        //check file size
-            echo "Sorry, your file is too large.";
-            $uploadOk = 0;
-        } elseif (
-            $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-            && $imageFileType != "gif" && $imageFileType != "pdf" && $imageFileType != "zip" && $imageFileType != "rar"
-        ) {    //check file extension
-            echo "Sorry, only JPG, JPEG, PNG , GIF, pdf, zip, rar files are allowed.";
-            $uploadOk = 0;
-        } else {
-            if ($check !== false) {
-                echo "File is an image - " . $check["mime"] . ".";
-                $uploadOk = 1;
-            } else {
-                echo "File is  an document.";
-                $uploadOk = 1;
-            }
-        }
-        // Check if $uploadOk is set to 0 by an error
-        if ($uploadOk == 0) {
-            echo "<br>Sorry, your file was not uploaded.";
-            // if everything is ok, try to upload file
-        } else {
-            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) { //save uploaded file
-                echo "<br>The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";
-                echo '<img src="uploads/' . $_FILES["fileToUpload"]["name"] . '" width=180 height=180/>';
-            } else {
-                echo "<br>Sorry, there was an error uploading your file.";
-            }
+    $target_dir = "uploads/"; //save direcotry
+    if (!is_dir($target_dir)) {
+        mkdir($target_dir);
+    }
+    $fileName = $_FILES["fileToUpload"]["name"];
+    $target_file_path = $target_dir . $fileName;
+    $uploadErrors = array();
+    function checkForUploadErrors()
+    {
+        checkSize();
+        checkFileType();
+    }
+    function checkSize()
+    {
+        if ($_FILES["fileToUpload"]["size"] > 500000) {
+            global $uploadErrors;
+            $uploadErrors[] = 'File exceeds maximum size.';
         }
     }
-    ?>
-</body>
+    function checkFileType()
+    {
+        echo 'Checking file type';
+        global $uploadErrors;
+        if (getimagesize($_FILES['fileToUpload']['tmp_name']) === false) {
+            $uploadErrors[] = 'Not an image file.';
+        }
+        $mime_type = mime_content_type($_FILES['fileToUpload']['tmp_name']);
+        $allowed_file_types = ['image/png', 'image/jpeg', 'image/jpg'];
+        if (!in_array($mime_type, $allowed_file_types)) {
+            array_push($uploadErrors, 'Only JPG, JPEG, PNG files allowed.');
+        }
+    }
+    function handleUpload($target_file_path)
+    {
+        global $uploadErrors;
+        if (empty($uploadErrors) == 1) {
+            if (file_exists($target_file_path)) {
+                //TODO: update database file path string.
+                echo "<img src=" . $target_file_path . " height=180 width=180 />";
+                //TODO: show new database file path string for user profile image
+            } elseif (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file_path)) {
+                //TODO: update database file path string.
+                echo "<img src=" . $target_file_path . " height=180 width=180 />";
+                //TODO: show new database file path string for user profile image
+            }
+        } else {
+            echo '<img src="https://brandeps.com/icon-download/M/Music-icon-vector-03.svg" width=180 height=180">';
+            //TODO: load current profile image path from database
+            echo '<br>';
+            echo '<a class="errorText">' . $uploadErrors[0] . '</a>';
+        }
+    }
 
-</html>
+    checkForUploadErrors();
+    handleUpload($target_file_path);
+
+    ?>
