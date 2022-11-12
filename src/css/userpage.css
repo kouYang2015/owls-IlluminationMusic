@@ -1,0 +1,41 @@
+form.searchPlaylist input[type="text"] {
+  padding: 7px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+form.searchPlaylist button {
+  float: left;
+  width: 5%;
+  padding: 12px;
+  background: #2196f3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+.searchPlaylist {
+  padding-left: 10px 50%;
+  padding-top: 1%;
+}
+
+h1 {
+  font-size: 32px;
+  display: inline-block;
+  float: left;
+  padding-right: 3%;
+}
+
+td {
+  text-align: center;
+}
+
+body {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
+}
