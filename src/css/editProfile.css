@@ -1,0 +1,52 @@
+.sidenav {
+  width: 130px;
+  position: fixed;
+  z-index: 1;
+  top: 100px;
+  left: 30px;
+  background: #ddd;
+  overflow-x: hidden;
+  padding: 8px 0;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 23px;
+  color: black;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #2196f3;
+}
+
+#buttons {
+  text-align: center;
+}
+
+#submit {
+  width: 100px;
+  height: 40px;
+  border-radius: 30px;
+  font-size: 16px;
+}
+
+#cancel {
+  width: 100px;
+  height: 40px;
+  border-radius: 30px;
+  font-size: 16px;
+}
+
+#buttons {
+  text-align: center;
+}
+
+#submit:hover {
+  font-weight: bold;
+}
+
+#cancel:hover {
+  font-weight: bold;
+}
