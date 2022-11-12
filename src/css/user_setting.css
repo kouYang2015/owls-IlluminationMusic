@@ -1,0 +1,30 @@
+h1 {
+  text-align: center;
+}
+
+.profile_icon {
+  text-align: center;
+}
+
+.upload {
+  text-align: center;
+}
+
+.edit {
+  border-radius: 30px;
+  font-size: 18px;
+  padding: 8px 1%;
+}
+
+.deletebtn {
+  background-color: red;
+  border-radius: 30px;
+  font-size: 18px;
+  padding: 8px 1%;
+}
+.deletebtn:active {
+  background-color: #ff8a84;
+}
+.errorText {
+  color: red;
+}
