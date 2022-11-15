@@ -42,29 +42,28 @@
     </div>
     <br>
 
-    <h2><u>Change Password</u></h2><br>
-    <div class="password_table">
-        <table class="list">
-            <tr class="current">
-                <th class="left_column">Current Password:<br><br></th>
-                <th> <input type="text" id="current_password" name="current_password" size="50" placeholder="Enter Current Password"><br><br></th>
-            </tr>
-            <tr class="new">
-                <th class="left_column">New Password:<br><br></th>
-                <th> <input type="text" id="new_password" name="new_password" size="50" placeholder="Enter New Password"><br><br></th>
-            </tr>
-            <tr class="confirm">
-                <th class="left_column">Confirm New Password:<br><br></th>
-                <th><input type="text" id="confirm_password" name="confirm_password" size="50" placeholder="Re-Enter New Password"><br><br></th>
-            </tr>
-        </table>
-    </div>
-    <br>
-
-    <div class="buttons" id="buttons">
-        <button type="submit" id="cancel" value="Cancel" style="background-color:rgb(209, 205, 205);">Cancel</button>
-        <button type="submit" id="submit" value="Submit" style="background-color: rgb(45, 199, 45); color: black;">Submit</button>
-    </div>
+    <form>
+        <h2><u>Change Password</u></h2><br>
+        <div class="password_table">
+            <table class="list">
+                <tr class="current">
+                    <th class="left_column">Current Password:<br><br></th>
+                    <th> <input type="text" id="current_password" name="current_password" size="50" placeholder="Enter Current Password"><br><br></th>
+                </tr>
+                <tr class="new">
+                    <th class="left_column">New Password:<br><br></th>
+                    <th> <input type="text" id="new_password" name="new_password" size="50" placeholder="Enter New Password"><br><br></th>
+                </tr>
+                <tr class="confirm">
+                    <th class="left_column">Confirm New Password:<br><br></th>
+                    <th><input type="text" id="confirm_password" name="confirm_password" size="50" placeholder="Re-Enter New Password"><br><br></th>
+                </tr>
+            </table>
+        </div>
+        <div class="buttons" id="buttons">
+            <input type="submit" id="updatePw" value="updatePw" style="background-color: rgb(45, 199, 45); color: black;">Update Password</input>
+        </div>
+    </form>
 
 </body>
 
