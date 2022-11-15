@@ -49,3 +49,12 @@ h2 {
   text-align: center;
   font-weight: bold;
 }
+.submitbtn {
+  background-color: #74dc38;
+  border-radius: 30px;
+  font-size: 18px;
+  padding: 8px 1%;
+}
+.submitbtn:active {
+  background-color: #cbe8ba;
+}
