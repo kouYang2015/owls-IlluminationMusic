@@ -73,3 +73,27 @@ function updateEmail($usernameToSearchFor, $newEmail)
         echo '<p>Could update email.</p>';
     }
 }
+
+function validatePassword($username, $password)
+{
+    //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+    $db = new mysqli("localhost", "root", "", "illumination_local");
+    if (mysqli_connect_errno()) {
+        echo '<p>Error: Could not connect to database. Please try again later.</p>';
+        exit;
+    }
+
+    $query = "SELECT user_password FROM users WHERE (username = ?)";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param('s', $username);
+    $stmt->execute();
+    $stmt->store_result();
+
+    $stmt->bind_result($user_password);
+    while ($stmt->fetch()) {
+        if ($user_password == $password) {
+            return true;
+        }
+    }
+    return false;
+}
