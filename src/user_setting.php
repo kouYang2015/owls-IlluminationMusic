@@ -31,7 +31,8 @@
       include 'upload.php'; // Will upload a new file if it doesn't exist and show
     } else { // Connect to db and check if user has a profile image filepath name set
       $usernameToSearchFor = 'johndoe123'; // TODO: FOR DEMONSTRATION PURPOSES ONLY
-      $db = new mysqli("localhost", "root", "", "illumination_local");
+      @$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+      //$db = new mysqli("localhost", "root", "", "illumination_local");
       if (mysqli_connect_errno()) {
         echo '<img src="https://brandeps.com/icon-download/M/Music-icon-vector-03.svg" width=180 height=180">';
       } else {
@@ -63,7 +64,8 @@
 
   <?php
   $usernameToSearchFor = 'johndoe123';
-  $db = new mysqli("localhost", "root", "", "illumination_local");
+  @$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+  //$db = new mysqli("localhost", "root", "", "illumination_local");
   if (mysqli_connect_errno()) {
     echo '<p>Error: Could not connect to database.<br/>
        Please try again later.</p>';

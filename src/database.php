@@ -2,8 +2,8 @@
 
 function insertNewUser($username, $first_name, $last_name, $newEmail, $user_password)
 {
-    //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
-    @$db = mysqli_connect("localhost", "root", "", "illumination_local"); //Use when working offline and locally
+    @$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+    //@$db = mysqli_connect("localhost", "root", "", "illumination_local"); //Use when working offline and locally
     if (mysqli_connect_errno()) {
         echo "<p>Error: Could not connect to database.<br/>
           Please try again later.</p>";
@@ -30,8 +30,8 @@ function insertNewUser($username, $first_name, $last_name, $newEmail, $user_pass
 
 function updatePassword($usernameToSearchFor, $newPassword)
 {
-    //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
-    @$db = mysqli_connect("localhost", "root", "", "illumination_local"); //Use when working offline and locally
+    @$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+    //@$db = mysqli_connect("localhost", "root", "", "illumination_local"); //Use when working offline and locally
     if (mysqli_connect_errno()) {
         echo "<p>Error: Could not connect to database.<br/>
           Please try again later.</p>";
@@ -53,8 +53,8 @@ function updatePassword($usernameToSearchFor, $newPassword)
 
 function updateEmail($usernameToSearchFor, $newEmail)
 {
-    //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
-    @$db = mysqli_connect("localhost", "root", "", "illumination_local"); //Use when working offline and locally
+    @$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+    //@$db = mysqli_connect("localhost", "root", "", "illumination_local"); //Use when working offline and locally
     if (mysqli_connect_errno()) {
         echo "<p>Error: Could not connect to database.<br/>
               Please try again later.</p>";
@@ -76,8 +76,8 @@ function updateEmail($usernameToSearchFor, $newEmail)
 
 function validatePassword($username, $password)
 {
-    //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
-    $db = new mysqli("localhost", "root", "", "illumination_local");
+    @$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+    //$db = new mysqli("localhost", "root", "", "illumination_local");
     if (mysqli_connect_errno()) {
         echo '<p>Error: Could not connect to database. Please try again later.</p>';
         exit;
