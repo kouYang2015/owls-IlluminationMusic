@@ -59,11 +59,11 @@
                 </tr>
                 <tr>
                     <th class="left_column">New Email Address:<br><br></th>
-                    <th> <input type="text" id="new_address" name="new_address" size="50" placeholder="Enter New Email Address"><br><br></th>
+                    <th> <input type="text" id="new_address" name="new_address" size="50" placeholder="Enter New Email Address" pattern="[a-zA-Z0-9._]+@[a-z].+[a-z]"><br><br></th>
                 </tr>
                 <tr>
                     <th class="left_column">Confirm New Email Address:<br><br></th>
-                    <th><input type="text" id="confirm_address" name="confirm_address" size="50" placeholder="Re-Enter New Email Address"><br><br></th>
+                    <th><input type="text" id="confirm_address" name="confirm_address" size="50" placeholder="Re-Enter New Email Address" pattern="[a-zA-Z0-9._]+@[a-z].+[a-z]"><br><br></th>
                 </tr>
             </table>
         </div>
