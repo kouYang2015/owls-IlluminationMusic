@@ -77,3 +77,10 @@ table {
 table.rightAlignTD:first-child td {
   text-align: right;
 }
+.buttonContainer {
+  font-size: 20px;
+  border-radius: 20px;
+  font-size: 18px;
+  width: 10%;
+  height: 40px;
+}
