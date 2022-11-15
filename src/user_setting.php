@@ -28,12 +28,28 @@
   <div class="profile_icon">
     <?php
     if (isset($_POST['submit']) && is_uploaded_file($_FILES['fileToUpload']['tmp_name'])) {
-      include 'upload.php';
-    } else {
-      if (false) { // TODO: update if statement to check database if there is a filpath for user.
-        //TODO: load current profile image path from database
-      } else {
+      include 'upload.php'; // Will upload a new file if it doesn't exist and show
+    } else { // Connect to db and check if user has a profile image filepath name set
+      $usernameToSearchFor = 'johndoe123'; // TODO: FOR DEMONSTRATION PURPOSES ONLY
+      $db = new mysqli("localhost", "root", "", "illumination_local");
+      if (mysqli_connect_errno()) {
         echo '<img src="https://brandeps.com/icon-download/M/Music-icon-vector-03.svg" width=180 height=180">';
+      } else {
+        $query = "SELECT profile_image_filename FROM user_profile_images 
+        right join users on user_profile_images.user_id = users.user_id WHERE (username = ?) ";
+        $stmt = $db->prepare($query);
+        $stmt->bind_param('s', $usernameToSearchFor);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $userimagename = $result->fetch_row();
+        if (is_array($userimagename) && $userimagename[0] != null) {
+          echo "<img src=" . $userimagename[0] . " height=180 width=180 />";
+        } else {
+          echo '<img src="https://brandeps.com/icon-download/M/Music-icon-vector-03.svg" width=180 height=180">';
+        }
+
+        $stmt->free_result();
+        $db->close();
       }
     }
     ?>
@@ -48,16 +64,30 @@
   <br>
 
   <?php
-  $userInfo = array(array(
-    'username' => 'name',
-    'Email' => '1234abcde@gmail.com'
-  ));
-  // TODO: after database integration, actually use the username and email from database.
-
-  foreach ($userInfo as $info) {
-    echo '<i><p style="font-family:arial; font-size:20px; text-align:center">' . "Username: " . $info['username'] . "</p>";
-    echo '<i><p style="font-family:arial; font-size:20px; text-align:center">' . "Email: " . $info['Email'] . "</p>";
+  $usernameToSearchFor = 'johndoe123';
+  $db = new mysqli("localhost", "root", "", "illumination_local");
+  if (mysqli_connect_errno()) {
+    echo '<p>Error: Could not connect to database.<br/>
+       Please try again later.</p>';
+    exit;
   }
+
+  $query = "SELECT username, user_email FROM users WHERE (username = ?)";
+  $stmt = $db->prepare($query);
+  $stmt->bind_param('s', $usernameToSearchFor);
+  $stmt->execute();
+  $stmt->store_result();
+
+  $stmt->bind_result($username, $user_email);
+
+  while ($stmt->fetch()) {
+    echo '<i><p style="font-family:arial; font-size:20px; text-align:center">User Name: ' . $username . '</p></i>';
+    echo '<i><p style="font-family:arial; font-size:20px; text-align:center">User Email: ' . $user_email . '</p></i>';
+    "</p>";
+  }
+
+  $stmt->free_result();
+  $db->close();
   ?>
 
   <br>
