@@ -28,7 +28,7 @@ function insertNewUser($username, $first_name, $last_name, $newEmail, $user_pass
     $db->close();
 }
 
-function updatePassword($username, $password)
+function updatePassword($usernameToSearchFor, $newPassword)
 {
     //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
     @$db = mysqli_connect("localhost", "root", "", "illumination_local"); //Use when working offline and locally
@@ -37,19 +37,39 @@ function updatePassword($username, $password)
           Please try again later.</p>";
         exit;
     }
-    $query = "UPDATE user_password SET password = ? WHERE username = ?)";
+    $query = "UPDATE users SET user_password = ? WHERE username = ?";
     $stmt = $db->prepare($query);
-    $stmt->bind_param('ss', $password, $username);
+    $stmt->bind_param('ss', $newPassword, $usernameToSearchFor);
     $stmt->execute();
-
     if ($stmt->affected_rows > 0) {
         echo '<p>Succefully updated password!</p>';
-        echo '<p>Username: ' . $username . '</p><br>';
-        echo '<p>PW now: ' . $password . '</p><br>';
     } else {
         echo '<p>An error has occurred.</p><br/>';
         echo '<p>Could update password.</p>';
     }
 
     $db->close();
+}
+
+function updateEmail($usernameToSearchFor, $newEmail)
+{
+    //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+    @$db = mysqli_connect("localhost", "root", "", "illumination_local"); //Use when working offline and locally
+    if (mysqli_connect_errno()) {
+        echo "<p>Error: Could not connect to database.<br/>
+              Please try again later.</p>";
+        exit;
+    }
+    $query = "UPDATE users SET user_email = ? WHERE username = ?";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param('ss', $newEmail, $usernameToSearchFor);
+    $stmt->execute();
+
+    if ($stmt->affected_rows > 0) {
+        echo '<p>Succefully updated email!</p>';
+        echo '<p>New email:' . $newEmail . ' set for ' . $usernameToSearchFor . '</p><br>';
+    } else {
+        echo '<p>An error has occurred.</p><br/>';
+        echo '<p>Could update email.</p>';
+    }
 }
