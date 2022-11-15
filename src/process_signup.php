@@ -1,11 +1,11 @@
 <?php
-$uname = $_POST['uname'];
-$fname = $_POST['fname'];
-$lname = $_POST['lname'];
-$email = $_POST['email'];
-$email_confirm = $_POST['email_confirm'];
-$password = $_POST['password'];
-$password_confirm = $_POST['password_confirm'];
+$uname = htmlspecialchars($_POST['uname']);
+$fname = htmlspecialchars($_POST['fname']);
+$lname = htmlspecialchars($_POST['lname']);
+$email = htmlspecialchars($_POST['email']);
+$email_confirm = htmlspecialchars($_POST['email_confirm']);
+$password = htmlspecialchars($_POST['password']);
+$password_confirm = htmlspecialchars($_POST['password_confirm']);
 include 'database.php';
 ?>
 <!DOCTYPE html>
@@ -13,18 +13,32 @@ include 'database.php';
 
 <head>
   <title>Illumination Music - Signup Results</title>
+  <link rel="stylesheet" type="text/css" href="css/theme.css">
 </head>
 
 <body>
+  <div class="navbar">
+    <a href="homePage.html"><img src="https://brandeps.com/icon-download/M/Music-icon-vector-03.svg" style="width: 50px; height: 50px" /></a>
+  </div>
   <h1 align="center">Signup Results</h1>
   <div align="center">
     <h3>Your Entries:</h3>
     <?php
-    insertNewUser($uname, $fname, $lname, $email, $password);
+    if ($email == $email_confirm && $password == $password_confirm) {
+      insertNewUser($uname, $fname, $lname, $email, $password);
+    } else {
+      if ($email != $email_confirm) {
+        echo 'Email & email confirmation does not match! <br>';
+      }
+      if ($password != $password_confirm) {
+        echo 'Password & password confirmation does not match!';
+        echo '<a href="signup.html"><button type="submit" class="buttonContainer">Try Again</button></a>';
+      }
+    }
+
     ?>
     <br>
-    <h3> Under Construction. Next step: Validate username or email is not in database before adding to database. </h3>
-    <h3> Validate emails and passwords match confirmation. </h3>
+    <a href="login.html"><button type="submit" class="buttonContainer">Login</button></a>
   </div>
 </body>
 
