@@ -56,12 +56,10 @@
   </div>
   <div class="upload">
     <form action="user_setting.php" method="post" enctype="multipart/form-data">
-      Select a profile image to upload: </p>
       <input type="file" name="fileToUpload" id="fileToUpload">
       <input type="submit" value="Upload Image" name="submit">
     </form>
   </div>
-  <br>
 
   <?php
   $usernameToSearchFor = 'johndoe123';
@@ -91,12 +89,9 @@
   ?>
 
   <br>
-  <div class="editbtn" style="text-align: center">
-    <a href="EditProfile_Email.html"><button type="submit" class="edit" id="edit" value="Edit Profile">Edit Profile</button></a>
-  </div>
-
-  <br><br>
-  <div class="delete" style="text-align: center">
+  <div style="text-align: center">
+    <a href="EditProfile.php"><button type="submit" class="edit" id="edit" value="Edit Profile">Edit Profile</button></a>
+    <br><br>
     <button type="submit" class="deletebtn" id="delete" value="delete Account">Delete Account</button>
   </div>
 
