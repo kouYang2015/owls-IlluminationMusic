@@ -27,44 +27,71 @@
 
     <h1><u>Change Email Address</u></h1><br>
 
-    <div class="email_table">
-        <table class="list">
-            <tr class="current">
-                <th class="left_column">Current Email:<br><br></th>
-                <th class="current_address">currentUser@email.com<br><br></th>
-            </tr>
-            <tr class="new">
-                <th class="left_column">New Email Address:<br><br></th>
-                <th> <input type="text" id="new_address" name="new_address" size="50" placeholder="Enter New Email Address"><br><br></th>
-            </tr>
-            <tr class="confirm">
-                <th class="left_column">Confirm New Email Address:<br><br></th>
-                <th><input type="text" id="confirm_address" name="confirm_address" size="50" placeholder="Re-Enter New Email Address"><br><br></th>
-            </tr>
-        </table>
-    </div>
-    <br>
+    <form action="process_edit_profile.php" method="post">
+        <div>
+            <table>
+                <tr>
+                    <th class="left_column">Current Email:<br><br></th>
+                    <?php
+                    $usernameToSearchFor = 'johndoe123';
+                    $db = new mysqli("localhost", "root", "", "illumination_local");
+                    if (mysqli_connect_errno()) {
+                        echo '<p>Error: Could not connect to database. Please try again later.</p>';
+                        exit;
+                    }
 
-    <form>
+                    $query = "SELECT user_email FROM users WHERE (username = ?)";
+                    $stmt = $db->prepare($query);
+                    $stmt->bind_param('s', $usernameToSearchFor);
+                    $stmt->execute();
+                    $stmt->store_result();
+
+                    $stmt->bind_result($user_email);
+
+                    while ($stmt->fetch()) {
+                        echo '<th class="current_address">' . $user_email . '<br><br></th> ';
+                        "</p>";
+                    }
+
+                    $stmt->free_result();
+                    $db->close();
+                    ?>
+                </tr>
+                <tr>
+                    <th class="left_column">New Email Address:<br><br></th>
+                    <th> <input type="text" id="new_address" name="new_address" size="50" placeholder="Enter New Email Address"><br><br></th>
+                </tr>
+                <tr>
+                    <th class="left_column">Confirm New Email Address:<br><br></th>
+                    <th><input type="text" id="confirm_address" name="confirm_address" size="50" placeholder="Re-Enter New Email Address"><br><br></th>
+                </tr>
+            </table>
+        </div>
+        <div style="text-align:center">
+            <button type="submit" name="updateEmail" value="Request email update" class="submitbtn">Update Email</button>
+        </div>
+    </form>
+
+    <form action="process_edit_profile.php" method="post">
         <h2><u>Change Password</u></h2><br>
-        <div class="password_table">
-            <table class="list">
-                <tr class="current">
+        <div>
+            <table>
+                <tr>
                     <th class="left_column">Current Password:<br><br></th>
                     <th> <input type="text" id="current_password" name="current_password" size="50" placeholder="Enter Current Password"><br><br></th>
                 </tr>
-                <tr class="new">
+                <tr>
                     <th class="left_column">New Password:<br><br></th>
                     <th> <input type="text" id="new_password" name="new_password" size="50" placeholder="Enter New Password"><br><br></th>
                 </tr>
-                <tr class="confirm">
+                <tr>
                     <th class="left_column">Confirm New Password:<br><br></th>
                     <th><input type="text" id="confirm_password" name="confirm_password" size="50" placeholder="Re-Enter New Password"><br><br></th>
                 </tr>
             </table>
         </div>
-        <div class="buttons" id="buttons">
-            <input type="submit" id="updatePw" value="updatePw" style="background-color: rgb(45, 199, 45); color: black;">Update Password</input>
+        <div style="text-align:center">
+            <button type="submit" name="updatePw" value="Request password update" class="submitbtn">Update Password</button>
         </div>
     </form>
 
