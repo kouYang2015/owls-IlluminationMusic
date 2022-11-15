@@ -1,0 +1,8 @@
+.submitbtn {
+  border-radius: 30px;
+  font-size: 18px;
+  padding: 8px 1%;
+}
+.submitbtn:active {
+  background-color: #7f7f7f;
+}

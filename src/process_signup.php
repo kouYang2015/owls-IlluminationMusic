@@ -29,11 +29,10 @@ include 'database.php';
     } else {
       if ($email != $email_confirm) {
         echo 'Email & email confirmation does not match! <br>';
-      }
-      if ($password != $password_confirm) {
+      } else if ($password != $password_confirm) {
         echo 'Password & password confirmation does not match!';
-        echo '<a href="signup.html"><button type="submit" class="buttonContainer">Try Again</button></a>';
       }
+      echo '<a href="signup.html"><button type="submit" class="buttonContainer">Try Again</button></a>';
     }
 
     ?>
