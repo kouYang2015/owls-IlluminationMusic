@@ -7,12 +7,12 @@ function showLoggedInHeader()
     <header>
         <div class="navbar">
             <div class="navbar-container-left">
-                <a href="homePage.html">
+                <a href="home.php">
                 <img
                     class="navbar-homeIcon"
                     src="https://brandeps.com/icon-download/M/Music-icon-vector-03.svg"
                 /></a>
-                <a href="homePage.html">Home</a>
+                <a href="home.php">Home</a>
                 <a href="userpage.php">Playlist</a>
             </div>
 
@@ -20,7 +20,7 @@ function showLoggedInHeader()
                 <img class="dropbtn" src="https://pic.onlinewebfonts.com/svg/img_24787.png" style="width:40px;height:40px;">
                 <div class="dropdown-content">
                     <a href="user_setting.php">Account</a>
-                    <a href="EditProfile.php">Security</a>
+                    <a href="edit-profile.php">Security</a>
                     <a href="logout.php">Log out</a>
                 </div>
             </div>
@@ -35,24 +35,23 @@ function showNotLoggedInHeader()
     <header>
     <div class="navbar">
       <div class="navbar-container-left">
-        <a href="homePage.html"
+        <a href="home.php"
           ><img
             class="navbar-homeIcon"
             src="https://brandeps.com/icon-download/M/Music-icon-vector-03.svg"
         /></a>
-        <a href="homePage.html">Home</a>
-        <a href="userpage.php">Playlist</a>
+        <a href="home.php">Home</a>
       </div>
 
       <div class="navbar-container-right">
-        <form action="Login.html">
+        <form action="login.php">
           <input
             class="buttonContainer loginButton"
             type="submit"
             value="Login"
           />
         </form>
-        <form action="signup.html">
+        <form action="signup.php">
           <input
             class="buttonContainer signupButton"
             type="submit"
@@ -70,8 +69,14 @@ function showHomeOnlyHeader()
     echo '
     <header>
         <div class="navbar">
-            <a href="homePage.html"><img src="https://brandeps.com/icon-download/M/Music-icon-vector-03.svg" style="width: 50px; height: 50px" /></a>
-            <a href="homePage.html">Home</a>
+            <div class="navbar-container-left">
+                <a href="home.php"
+                ><img
+                    class="navbar-homeIcon"
+                    src="https://brandeps.com/icon-download/M/Music-icon-vector-03.svg"
+                /></a>
+                <a href="home.php">Home</a>
+            </div>
         </div>
     </header>
     ';
@@ -80,8 +85,8 @@ function showHomeOnlyHeader()
 function findHeader()
 {
     $homeOnly_list = array(
-        'signup.php', 'process_signup.php', 'process_login.php', 'login.php', 'ForgotPassword.php',
-        'process_forgotPW.php', 'logout.php'
+        'signup.php', 'process-signup.php', 'process-login.php', 'login.php', 'forgot-password.php',
+        'process-forgotPW.php', 'logout.php'
     );
     foreach ($homeOnly_list as $pageName) {
         if (basename($_SERVER['PHP_SELF']) == $pageName) {
