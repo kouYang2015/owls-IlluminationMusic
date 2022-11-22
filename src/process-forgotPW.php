@@ -9,9 +9,12 @@ $playlistName = $_POST['playlistName'];
 
 <head>
   <title>Illumination Music - Forgot Password Results</title>
+  <link rel="stylesheet" type="text/css" href="css/theme.css" />
+  <link rel="stylesheet" type="text/css" href="css/header.css" />
 </head>
 
 <body>
+  <?php include_once 'header.php'; ?>
   <h1 align="center">Forgot Password Results</h1>
   <div align="center">
     <h3>Your Entries:</h3>
