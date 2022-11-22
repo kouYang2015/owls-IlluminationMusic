@@ -5,27 +5,10 @@
 }
 
 img {
-  float: left;
   width: 200px;
   height: 200px;
   object-fit: cover;
   padding: 10px;
-}
-.buttonContainer {
-  font-size: 20px;
-  border-radius: 20px;
-  font-size: 18px;
-  width: 10%;
-  height: 40px;
-}
-.loginButton {
-  float: right;
-  background-color: #81c784;
-}
-
-.signupButton {
-  float: right;
-  background-color: #b2ebf2;
 }
 
 .genPlaylist-container {
