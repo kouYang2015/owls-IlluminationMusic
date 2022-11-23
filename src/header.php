@@ -10,7 +10,7 @@ function showLoggedInHeader()
                 <a href="home.php">
                 <img
                     class="navbar-homeIcon"
-                    src="https://brandeps.com/icon-download/M/Music-icon-vector-03.svg"
+                    src="images/illumination_logo.png"
                 /></a>
                 <a href="home.php">Home</a>
                 <a href="userpage.php">Playlist</a>
@@ -38,7 +38,7 @@ function showNotLoggedInHeader()
         <a href="home.php"
           ><img
             class="navbar-homeIcon"
-            src="https://brandeps.com/icon-download/M/Music-icon-vector-03.svg"
+            src="images/illumination_logo.png"
         /></a>
         <a href="home.php">Home</a>
       </div>
@@ -73,7 +73,7 @@ function showHomeOnlyHeader()
                 <a href="home.php"
                 ><img
                     class="navbar-homeIcon"
-                    src="https://brandeps.com/icon-download/M/Music-icon-vector-03.svg"
+                    src="images/illumination_logo.png"
                 /></a>
                 <a href="home.php">Home</a>
             </div>
