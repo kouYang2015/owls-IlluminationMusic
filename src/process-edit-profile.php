@@ -31,7 +31,7 @@ include 'database.php';
         updateEmail($usernameToSearchFor, $newEmail);
       } else {
         echo 'Email & email confirmation does not match! <br>';
-        echo '<a href="signup.html"><button type="submit" class="buttonContainer">Try Again</button></a>';
+        echo '<a href="edit-profile.php"><button type="submit" class="buttonContainer">Try Again</button></a>';
       }
     }
     if (isset($_POST['updatePw'])) {
@@ -41,11 +41,11 @@ include 'database.php';
           updatePassword($usernameToSearchFor, $newPassword);
         } else {
           echo 'New password & password confirmation does not match!';
-          echo '<a href="signup.html"><button type="submit" class="buttonContainer">Try Again</button></a>';
+          echo '<a href="edit-profile.php"><button type="submit" class="buttonContainer">Try Again</button></a>';
         }
       } else {
         echo 'Password does not match current password!';
-        echo '<a href="signup.html"><button type="submit" class="buttonContainer">Try Again</button></a>';
+        echo '<a href="edit-profile.php"><button type="submit" class="buttonContainer">Try Again</button></a>';
       }
     }
     ?>

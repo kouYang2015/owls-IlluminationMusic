@@ -20,7 +20,7 @@
     </div>
     <h1>You have been successfully logged out!</h1>
     <p>Thank you!</p>
-    <div><a href="homePage.html">Go back to homepage</a></div>
+    <div><a href="home.php">Go back to homepage</a></div>
 </body>
 
 </html>

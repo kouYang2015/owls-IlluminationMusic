@@ -13,7 +13,7 @@
   <div align="center">
     <span>Already have an account?</span>
     <a href="login.php">Log in</a>
-    <form action="process_signup.php" method="POST">
+    <form action="process-signup.php" method="POST">
       <table class="rightAlignTD">
         <tr>
           <td><label for="username">Username:</label></td>
