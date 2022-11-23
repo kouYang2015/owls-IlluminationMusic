@@ -14,12 +14,12 @@ include 'database.php';
 <head>
   <title>Illumination Music - Signup Results</title>
   <link rel="stylesheet" type="text/css" href="css/theme.css">
+  <link rel="stylesheet" type="text/css" href="css/header.css" />
+
 </head>
 
 <body>
-  <div class="navbar">
-    <a href="homePage.html"><img src="https://brandeps.com/icon-download/M/Music-icon-vector-03.svg" style="width: 50px; height: 50px" /></a>
-  </div>
+  <?php include 'header.php'; ?>
   <h1 align="center">Signup Results</h1>
   <div align="center">
     <h3>Your Entries:</h3>
