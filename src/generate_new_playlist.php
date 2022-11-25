@@ -10,6 +10,14 @@
       font-size: 50px;
     }
 
+    h2,
+    h3,
+    hr,
+    h5,
+    h6 {
+      font-size: 28px;
+    }
+
     .generatebtn {
       font-size: 25px;
       border-radius: 30px;
@@ -33,7 +41,11 @@
       background-color: aquamarine;
     }
 
-    #check_genre {
+    #check_genre,
+    #check_year,
+    #check_album,
+    #check_artist,
+    #check_language {
       width: 100%;
       padding: 50px 0;
       text-align: center;
@@ -43,7 +55,7 @@
       display: none;
     }
 
-    #check_year {
+    /* #check_year {
       width: 100%;
       padding: 50px 0;
       text-align: center;
@@ -81,6 +93,10 @@
       margin-top: 20px;
       position: absolute;
       display: none;
+    } */
+
+    td {
+      text-align: left;
     }
   </style>
 </head>
@@ -113,20 +129,46 @@
     <button onclick="visibility('check_genre',)" class="genre">Genre</button>
     <div id="check_genre">
       <h2>Genre</h2>
-      <form action="#" method="post">
-        <input type="checkbox" name="genre_list[]" value="Blues" /><label>Blues</label><br /><br />
-        <input type="checkbox" name="genre_list[]" value="Classical" /><label>Classical</label><br /><br />
-        <input type="checkbox" name="genre_list[]" value="Country" /><label>Country</label><br /><br />
-        <input type="checkbox" name="genre_list[]" value="Dance/Electronics" /><label>Dance/Electronics</label><br /><br />
-        <input type="checkbox" name="genre_list[]" value="HipHop" /><label>HipHop</label><br /><br />
-        <input type="checkbox" name="genre_list[]" value="Jazz" /><label>Jazz</label><br /><br />
-        <input type="checkbox" name="genre_list[]" value="Latin" /><label>Latin</label><br /><br />
-        <input type="checkbox" name="genre_list[]" value="Metal" /><label>Metal</label><br /><br />
-        <input type="checkbox" name="genre_list[]" value="Pop" /><label>Pop</label><br /><br />
-        <input type="checkbox" name="genre_list[]" value="R&B" /><label>R&B</label><br /><br />
-        <input type="checkbox" name="genre_list[]" value="Rock" /><label>Rock</label><br /><br />
-        <input type="submit" name="submit" value="Submit" />
-      </form>
+      <table>
+        <tr>
+          <td><input type="checkbox" name="genre_list[]" value="Blues">Blues</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="genre_list[]" value="Classical">Classical</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="genre_list[]" value="Country">Country</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="genre_list[]" value="Dance/Electronics">Dance/Electronics</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="genre_list[]" value="HipHop">HipHop</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="genre_list[]" value="Jazz">Jazz</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="genre_list[]" value="Latin">Latin</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="genre_list[]" value="Metal">Metal</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="genre_list[]" value="Pop">Pop</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="genre_list[]" value="R&B">R&B</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="genre_list[]" value="Rock">Rock</td>
+        </tr>
+        <tr>
+          <td><input type="submit" name="submit" value="Submit"></td>
+        </tr>
+
+      </table>
+
     </div>
     <!-- <?php
           echo '<br/>';
@@ -138,44 +180,102 @@
 
     <button onclick="visibility('check_year')" class="year">Year</button>
     <div id="check_year">
-      <p>Year</p>
+      <h3>Year</h3>
+      <table>
+        <tr>
+          <td><input type="number" min="1900" max="2023" step="1" value="2000" /></td>
+          <td><input type="number" min="1900" max="2023" step="1" value="2000" /></td>
+        </tr>
+        <tr>
+          <td><input type="submit" name="submit" value="Submit"></td>
+        </tr>
+      </table>
 
     </div>
 
     <button onclick="visibility('check_album',)" class="album">Album</button>
     <div id="check_album">
-      <p>Album</p>
-      <input type="checkbox" name="album_list[]" value="album1" /><label>album1</label><br /><br />
-      <input type="checkbox" name="album_list[]" value="album2" /><label>album2</label><br /><br />
-      <input type="checkbox" name="album_list[]" value="album3" /><label>album3</label><br /><br />
-      <input type="checkbox" name="album_list[]" value="album4" /><label>album4</label><br /><br />
-      <input type="checkbox" name="album_list[]" value="album5" /><label>album5</label><br /><br />
+      <h4>Album</h4>
+      <table>
+        <tr>
+          <td><input type="checkbox" name="album_list[]" value="album1">alubm1</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="album_list[]" value="album2">album2</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="album_list[]" value="album3">album3</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="album_list[]" value="album4">album4</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="album_list[]" value="album5">album5</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="album_list[]" value="album5">album5</td>
+        </tr>
+        <tr>
+          <td><input type="submit" name="submit" value="Submit"></td>
+        </tr>
+      </table>
     </div>
 
     <button onclick="visibility('check_artist')" class="artist">
       Artist/Band
     </button>
     <div id="check_artist">
-      <p>Artist/Band</p>
-      <input type="checkbox" name="artist_list[]" value="Taylor Swift" /><label>Taylor Swift</label><br /><br />
-      <input type="checkbox" name="artist_list[]" value="BTS" /><label>BTS</label><br /><br />
-      <input type="checkbox" name="artist_list[]" value="Eminem" /><label>Eminem</label><br /><br />
-      <input type="checkbox" name="artist_list[]" value="Beyonce" /><label>Beyonce</label><br /><br />
-      <input type="checkbox" name="artist_list[]" value="Drake" /><label>Drake</label><br /><br />
+      <h5>Artist/Band</h5>
+      <table>
+        <tr>
+          <td><input type="checkbox" name="artist_list[]" value="Taylor Swift">Taylor Swift</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="artist_list[]" value="BTS">BTS</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="artist_list[]" value="Eminem">Eminem</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="artist_list[]" value="Beyonce">Beyonce</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="artist_list[]" value="Drake">Drake</td>
+        </tr>
+        <tr>
+          <td><input type="submit" name="submit" value="Submit"></td>
+        </tr>
+      </table>
     </div>
 
     <button onclick="visibility('check_language')" class="language">
       Language
     </button>
     <div id="check_language">
-      <p>Language</p>
-      <input type="checkbox" name="artist_list[]" value="English" /><label>English</label><br /><br />
-      <input type="checkbox" name="artist_list[]" value="Spanish" /><label>Spanish</label><br /><br />
-      <input type="checkbox" name="artist_list[]" value="French" /><label>French</label><br /><br />
-      <input type="checkbox" name="artist_list[]" value="German" /><label>German</label><br /><br />
-      <input type="checkbox" name="artist_list[]" value="Mandarin" /><label>Mandarin</label><br /><br />
-      <input type="checkbox" name="artist_list[]" value="Korean" /><label>Korean</label><br /><br />
-
+      <h6>Language</h6>
+      <table>
+        <tr>
+          <td><input type="checkbox" name="artist_list[]" value="English">English</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="artist_list[]" value="Spanish">Spanish</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="artist_list[]" value="French">French</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="artist_list[]" value="German">German</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="artist_list[]" value="Mandarin">Mandarin</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" name="artist_list[]" value="Korean">Korean</td>
+        </tr>
+        <tr>
+          <td><input type="submit" name="submit" value="Submit"></td>
+        </tr>
+      </table>
     </div>
   </div>
 
