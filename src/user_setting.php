@@ -76,7 +76,7 @@
 
   <br>
   <div style="text-align: center">
-    <a href="EditProfile.php"><button type="submit" class="edit" id="edit" value="Edit Profile">Edit Profile</button></a>
+    <a href="edit-profile.php"><button type="submit" class="edit" id="edit" value="Edit Profile">Edit Profile</button></a>
     <br><br>
     <button type="submit" class="deletebtn" id="delete" value="delete Account">Delete Account</button>
   </div>

@@ -14,7 +14,7 @@
 
     <h1><u>Change Email Address</u></h1><br>
 
-    <form action="process_edit_profile.php" method="post">
+    <form action="process-edit-profile.php" method="post">
         <div>
             <table>
                 <tr>
@@ -59,7 +59,7 @@
         </div>
     </form>
 
-    <form action="process_edit_profile.php" method="post">
+    <form action="process-edit-profile.php" method="post">
         <h2><u>Change Password</u></h2><br>
         <div>
             <table>

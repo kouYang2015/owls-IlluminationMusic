@@ -12,7 +12,7 @@
     <?php include 'header.php'; ?>
     <h1 align="center">Illumination Music</h1>
     <div class="genPlaylist-container">
-        <form action="generate_new_playlist.html">
+        <form action="generate-playlist.php">
             <input class="buttonContainer generateButton" type="submit" value="Generate New PlayList" />
         </form>
     </div>

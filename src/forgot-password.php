@@ -14,7 +14,7 @@
     <h3>
       Answer 3 of the 4 following questions correctly to reset your password
     </h3>
-    <form action="process_forgotPW.php" method="post">
+    <form action="process-forgotPW.php" method="post">
       <table class="rightAlignTD">
         <tr>
           <td><label for="username">Username:</label></td>
@@ -45,9 +45,9 @@
       </table>
       <input class="savework" type="submit" name="requestPassword" value="Request" />
     </form>
-    <a class="smallfont" href="login.html">Back to Login</a>
+    <a class="smallfont" href="login.php">Back to Login</a>
     <br />
-    <a class="smallfont" href="homePage.html">Go to Home</a>
+    <a class="smallfont" href="home.php">Go to Home</a>
   </div>
 </body>
 
