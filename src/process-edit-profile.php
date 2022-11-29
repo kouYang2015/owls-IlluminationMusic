@@ -17,25 +17,11 @@ include 'database.php';
   <title>Illumination Music - Edit Profile Results</title>
   <link rel="stylesheet" type="text/css" href="css/theme.css" />
   <link rel="stylesheet" type="text/css" href="css/process_edit_profile.css" />
+  <link rel="stylesheet" type="text/css" href="css/header.css" />
 </head>
 
 <body>
-  <header>
-    <div class="navbar">
-      <a href="homePage.html"><img src="https://brandeps.com/icon-download/M/Music-icon-vector-03.svg" style="width:50px;height:50px;"></a>
-      <a href="homePage.html">Home</a>
-      <a href="userpage.php">Playlist</a>
-
-      <div class="dropdown">
-        <img class="dropbtn" src="https://pic.onlinewebfonts.com/svg/img_24787.png" style="width:40px;height:40px;">
-        <div class="dropdown-content">
-          <a href="user_setting.php">Account</a>
-          <a href="EditProfile.php">Security</a>
-          <a href="logout.php">Log out</a>
-        </div>
-      </div>
-    </div>
-  </header>
+  <?php include 'header.php'; ?>
   <h1 align="center">Edit Profile</h1>
   <div align="center">
     <?php
@@ -45,7 +31,7 @@ include 'database.php';
         updateEmail($usernameToSearchFor, $newEmail);
       } else {
         echo 'Email & email confirmation does not match! <br>';
-        echo '<a href="signup.html"><button type="submit" class="buttonContainer">Try Again</button></a>';
+        echo '<a href="edit-profile.php"><button type="submit" class="buttonContainer">Try Again</button></a>';
       }
     }
     if (isset($_POST['updatePw'])) {
@@ -55,11 +41,11 @@ include 'database.php';
           updatePassword($usernameToSearchFor, $newPassword);
         } else {
           echo 'New password & password confirmation does not match!';
-          echo '<a href="signup.html"><button type="submit" class="buttonContainer">Try Again</button></a>';
+          echo '<a href="edit-profile.php"><button type="submit" class="buttonContainer">Try Again</button></a>';
         }
       } else {
         echo 'Password does not match current password!';
-        echo '<a href="signup.html"><button type="submit" class="buttonContainer">Try Again</button></a>';
+        echo '<a href="edit-profile.php"><button type="submit" class="buttonContainer">Try Again</button></a>';
       }
     }
     ?>
