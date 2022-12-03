@@ -5,6 +5,7 @@
   <title>Illumination Music - Generate New Playlist</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" type="text/css" href="css/theme.css" />
+  <link rel="stylesheet" type="text/css" href="css/header.css" />
   <style>
     .generatebtn {
       font-size: 25px;
@@ -18,20 +19,9 @@
       background-color: rgb(221, 157, 39);
     }
 
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      font-size: 28px;
-      text-align: center;
-    }
-
-
     .filterbtn {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-
     }
 
     button {
@@ -48,85 +38,90 @@
     table {
       display: none;
     }
+
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-size: 28px;
+      text-align: center;
+    }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="navbar">
-      <a href="homePage.html"><img src="https://brandeps.com/icon-download/M/Music-icon-vector-03.svg" style="width: 50px; height: 50px" /></a>
-      <a href="homePage.html">Home</a>
-      <a href="userpage.php">Playlist</a>
-
-      <div class="dropdown">
-        <img class="dropbtn" src="https://pic.onlinewebfonts.com/svg/img_24787.png" style="width: 40px; height: 40px" />
-        <div class="dropdown-content">
-          <a href="user_setting.php">Account</a>
-          <a href="EditProfile.php">Security</a>
-          <a href="logout.php">Log out</a>
-        </div>
-      </div>
-    </div>
-  </header>
+  <?php include 'header.php' ?>
   <h1 align="center">New Playlist</h1>
   <div class="genrate" style="text-align: center">
     <button type="submit" class="generatebtn">Generate Playlist</button>
   </div>
   <br /><br />
+
   <div class="filterbtn">
     <div class="grid-item" id="genre">
       <button onclick="visibility('check_genre')" class="genrebtn">Genre</button>
-      <form action="#" method="POST" id="getSelectedbox">
-
-        <table id=check_genre>
+      <form action="process-generate-playlist.php" method=" POST" id="get-Selected-genre-box">
+        <table id="check_genre">
           <tr>
             <td>
               <h2>Genre</h2>
             </td>
           </tr>
           <tr>
-            <td><input type="checkbox" id="genre_checkbox" name="genre_list[]" value="Blues">Blues</td>
+            <td><select name="chooseGenre1" id="chooseGenre1">
+                <option value="select">Select</option>
+                <option value="Blues">Blues</option>
+                <option value="Classical">Classical</option>
+                <option value="Country">Country</option>
+                <option value="Dance/Electronics">Dance/Electronics</option>
+                <option value="HipHop">HipHop</option>
+                <option value="Jazz">Jazz</option>
+                <option value="Latin">Latin</option>
+                <option value="Metal">Metal</option>
+                <option value="Pop">Pop</option>
+                <option value="R&B">R&B</option>
+                <option value="Rock">Rock</option>
+              </select></td>
           </tr>
           <tr>
-            <td><input type="checkbox" id="genre_checkbox" name="genre_list[]" value="Classical">Classical</td>
+            <td><select name="chooseGenre2" id="chooseGenre2">
+                <option value="select">Select</option>
+                <option value="Blues">Blues</option>
+                <option value="Classical">Classical</option>
+                <option value="Country">Country</option>
+                <option value="Dance/Electronics">Dance/Electronics</option>
+                <option value="HipHop">HipHop</option>
+                <option value="Jazz">Jazz</option>
+                <option value="Latin">Latin</option>
+                <option value="Metal">Metal</option>
+                <option value="Pop">Pop</option>
+                <option value="R&B">R&B</option>
+                <option value="Rock">Rock</option>
+              </select></td>
           </tr>
           <tr>
-            <td><input type="checkbox" id="genre_checkbox" name="genre_list[]" value="Country">Country</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="genre_checkbox" name="genre_list[]" value="Dance/Electronics">Dance/Electronics</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="genre_checkbox" name="genre_list[]" value="HipHop">HipHop</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="genre_checkbox" name="genre_list[]" value="Jazz">Jazz</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="genre_checkbox" name="genre_list[]" value="Latin">Latin</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="genre_checkbox" name="genre_list[]" value="Metal">Metal</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="genre_checkbox" name="genre_list[]" value="Pop">Pop</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="genre_checkbox" name="genre_list[]" value="R&B">R&B</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="genre_checkbox" name="genre_list[]" value="Rock">Rock</td>
-          </tr>
-          <tr>
-            <td><input type="submit" id="submission1" name="submit" value="Submit"></td>
+            <td><select name="chooseGenre3" id="chooseGenre3">
+                <option value="select">Select</option>
+                <option value="Blues">Blues</option>
+                <option value="Classical">Classical</option>
+                <option value="Country">Country</option>
+                <option value="Dance/Electronics">Dance/Electronics</option>
+                <option value="HipHop">HipHop</option>
+                <option value="Jazz">Jazz</option>
+                <option value="Latin">Latin</option>
+                <option value="Metal">Metal</option>
+                <option value="Pop">Pop</option>
+                <option value="R&B">R&B</option>
+                <option value="Rock">Rock</option>
+              </select></td>
           </tr>
         </table>
-        <div id="divresult"></div>
       </form>
     </div>
     <div class="grid-item" id="year">
       <button onclick="visibility('check_year')" class="year">Year</button>
-      <form action="#" method="post" id="getSelectedbox">
+      <form action="process-generate-playlist.php" method=" post" id="getSelectedbox">
         <table id="check_year">
           <tr>
             <td>
@@ -134,21 +129,17 @@
             </td>
           </tr>
           <tr>
-            <td><input type=" number" id="year_checkbox" min="1900" max="2023" step="1" value="2000" size="4" />
+            <td><input type=" number" id="year_min_checkbox" min="1900" max="2023" step="1" value="2000" size="4" />
             </td>
-            <td><input type="number" id="year_checkbox" min="1900" max="2023" step="1" value="2000" size="4" /></td>
-          </tr>
-          <tr>
-            <td><input type="submit" id="submission2" name="submit" value="Submit"></td>
+            <td><input type="number" id="year_max_checkbox" min="1900" max="2023" step="1" value="2000" size="4" /></td>
           </tr>
         </table>
-        <div id="divresult"></div>
+
       </form>
     </div>
-
     <div class="grid-item" id="album">
       <button onclick="visibility('check_album',)" class="album">Album</button>
-      <form action="#" method="post" id="getSelectedbox">
+      <form action="process-generate-playlist.php" method=" post" id="getSelectedbox">
         <table id="check_album">
           <tr>
             <td>
@@ -156,35 +147,41 @@
             </td>
           </tr>
           <tr>
-            <td><input type="checkbox" id="album_checkbox" name="album_list[]" value="album1">alubm1</td>
+            <td><select name="choose_album1" id="choose_album1">
+                <option value="select">Select</option>
+                <option value="album1">album1</option>
+                <option value="album2">album2</option>
+                <option value="album3">album3</option>
+                <option value="album4">album4</option>
+                <option value="album5">album5</option>
+              </select></td>
           </tr>
           <tr>
-            <td><input type="checkbox" id="album_checkbox" name="album_list[]" value="album2">album2</td>
+            <td><select name="choose_album2" id="choose_album2">
+                <option value="select">Select</option>
+                <option value="album1">album1</option>
+                <option value="album2">album2</option>
+                <option value="album3">album3</option>
+                <option value="album4">album4</option>
+                <option value="album5">album5</option>
+              </select></td>
           </tr>
           <tr>
-            <td><input type="checkbox" id="album_checkbox" name="album_list[]" value="album3">album3</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="album_checkbox" name="album_list[]" value="album4">album4</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="album_checkbox" name="album_list[]" value="album5">album5</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="album_checkbox" name="album_list[]" value="album5">album5</td>
-          </tr>
-          <tr>
-            <td><input type="submit" id="submission3" name="submit" value="Submit"></td>
+            <td><select name="choose_album3" id="choose_album3">
+                <option value="select">Select</option>
+                <option value="album1">album1</option>
+                <option value="album2">album2</option>
+                <option value="album3">album3</option>
+                <option value="album4">album4</option>
+                <option value="album5">album5</option>
+              </select></td>
           </tr>
         </table>
-        <div id="divresult"></div>
       </form>
     </div>
-
-
     <div class="grid-item" id="artist">
       <button onclick="visibility('check_artist')" class="artist">Artist/Band</button>
-      <form action="#" method="post" id="getSelectedbox">
+      <form action="process-generate-playlist.php"" method=" post" id="getSelectedbox">
         <table id="check_artist">
           <tr>
             <td>
@@ -192,59 +189,78 @@
             </td>
           </tr>
           <tr>
-            <td><input type="checkbox" id="artist_checkbox" name="artist_list[]" value="Taylor Swift">Taylor Swift</td>
+            <td><select name="choose_artist1" id="choose_artist1">
+                <option value="select">Select</option>
+                <option value="Taylor Swift">Taylor Swift</option>
+                <option value="BTS">BTS</option>
+                <option value="Eminem">Eminem</option>
+                <option value="Beyonce">Beyonce</option>
+                <option value="Drake">Drake</option>
+              </select></td>
           </tr>
           <tr>
-            <td><input type="checkbox" id="artist_checkbox" name="artist_list[]" value="BTS">BTS</td>
+            <td><select name="choose_artist2" id="choose_artist2">
+                <option value="select">Select</option>
+                <option value="Taylor Swift">Taylor Swift</option>
+                <option value="BTS">BTS</option>
+                <option value="Eminem">Eminem</option>
+                <option value="Beyonce">Beyonce</option>
+                <option value="Drake">Drake</option>
+              </select></td>
           </tr>
           <tr>
-            <td><input type="checkbox" id="artist_checkbox" name="artist_list[]" value="Eminem">Eminem</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="artist_checkbox" name="artist_list[]" value="Beyonce">Beyonce</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="artist_checkbox" name="artist_list[]" value="Drake">Drake</td>
-          </tr>
-          <tr>
-            <td><input type="submit" id="submission4" name="submit" value="Submit"></td>
+            <td><select name="choose_artist3" id="choose_artist3">
+                <option value="select">Select</option>
+                <option value="Taylor Swift">Taylor Swift</option>
+                <option value="BTS">BTS</option>
+                <option value="Eminem">Eminem</option>
+                <option value="Beyonce">Beyonce</option>
+                <option value="Drake">Drake</option>
+              </select></td>
           </tr>
         </table>
-        <div id="divresult"></div>
       </form>
     </div>
     <div class="grid-item" id="language">
       <button onclick="visibility('check_language')" class="language">Language</button>
-      <form action="#" method="post" id="getSelectedbox">
+      <form action="process-generate-playlist.php" method="post" id="getSelectedbox">
         <table id="check_language">
           <tr>
             <td>
               <h6>Language</h6>
             </td>
           </tr>
-          <tr>
-            <td><input type="checkbox" id="language_checkbox" name="language_list[]" value="English">English</td>
+          <td><select name="availablecandy" id="availablecandy">
+              <option value="select">Select</option>
+              <option value="English">English</option>
+              <option value="Spanish">Spanish</option>
+              <option value="French">French</option>
+              <option value="German">German</option>
+              <option value="Mandarin">Mandarin</option>
+              <option value="Korean">Korean</option>
+            </select></td>
           </tr>
-          <tr>
-            <td><input type="checkbox" id="language_checkbox" name="language_list[]" value="Spanish">Spanish</td>
+          <td><select name="availablecandy" id="availablecandy">
+              <option value="select">Select</option>
+              <option value="English">English</option>
+              <option value="Spanish">Spanish</option>
+              <option value="French">French</option>
+              <option value="German">German</option>
+              <option value="Mandarin">Mandarin</option>
+              <option value="Korean">Korean</option>
+            </select></td>
           </tr>
-          <tr>
-            <td><input type="checkbox" id="language_checkbox" name="language_list[]" value="French">French</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="language_checkbox" name="language_list[]" value="German">German</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="language_checkbox" name="language_list[]" value="Mandarin">Mandarin</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" id="language_checkbox" name="language_list[]" value="Korean">Korean</td>
-          </tr>
-          <tr>
-            <td><input type="submit" id="submission5" name="submit" value="Submit"></td>
+          <td><select name="availablecandy" id="availablecandy">
+              <option value="select">Select</option>
+              <option value="English">English</option>
+              <option value="Spanish">Spanish</option>
+              <option value="French">French</option>
+              <option value="German">German</option>
+              <option value="Mandarin">Mandarin</option>
+              <option value="Korean">Korean</option>
+            </select></td>
           </tr>
         </table>
-        <div id="divresult"></div>
       </form>
     </div>
   </div>
@@ -260,14 +276,7 @@
     }
   </script>
 
-  <script>
-    var form = docunment.getElementById('getSelectedbox');
-    form.addEventListner('submission', function(e) {
-      e.preventDefault();
-      var checkboxes = document.getElementsByName('genre_list');
-      console.log(checkboxes);
-    });
-  </script>
+
 
 </body>
 
