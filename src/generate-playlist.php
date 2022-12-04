@@ -47,6 +47,10 @@
       font-size: 28px;
       text-align: center;
     }
+
+    p {
+      font-size: 15px;
+    }
   </style>
 </head>
 
@@ -54,7 +58,7 @@
   <?php include 'header.php' ?>
   <h1 align="center">New Playlist</h1>
   <div class="genrate" style="text-align: center">
-    <button type="submit" class="generatebtn">Generate Playlist</button>
+    <a href="process-generate-playlist.php"><button type="submit" class="generatebtn">Generate Playlist</button></a>
   </div>
   <br /><br />
 
@@ -129,9 +133,12 @@
             </td>
           </tr>
           <tr>
-            <td><input type=" number" id="year_min_checkbox" min="1900" max="2023" step="1" value="2000" size="4" />
+            <td>
+              <p>Min</p><input type="number" id="year_min_checkbox" min="1900" max="2023" step="1" value="2000" size="4" />
             </td>
-            <td><input type="number" id="year_max_checkbox" min="1900" max="2023" step="1" value="2000" size="4" /></td>
+            <td>
+              <p>Max</p><input type="number" id="year_max_checkbox" min="1900" max="2023" step="1" value="2000" size="4" />
+            </td>
           </tr>
         </table>
 
