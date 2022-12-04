@@ -24,16 +24,16 @@
         loginUser($login_user);
       } 
       else {
-        header('Location: login.php?login_user='.$login_user.'&errcode=1');
+        header('Location: login.php?errcode=1&login_user='.$login_user);
         exit;
       }
     }
     else {
-      header('Location: login.php?login_user='.$login_user.'&errcode=2');
+      header('Location: login.php?errcode=2&login_user='.$login_user);
       exit;
     }
   } else {
-    header('Location: login.php?login_user='.$login_user.'&errcode=3');
+    header('Location: login.php?errcode=3&login_user='.$login_user);
     exit;
   }
   include_once 'header.php';
