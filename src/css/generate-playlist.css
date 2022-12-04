@@ -1,0 +1,61 @@
+.genPlaylist-container {
+  min-width: fit-content;
+  max-width: 20%;
+  margin: 0 auto 30px auto;
+  text-align: center;
+}
+.genPlaylist-container button {
+  min-width: fit-content;
+  max-width: 50%;
+}
+.filterbtn {
+  width: 100%;
+  font-size: 25px;
+  border-radius: 30px;
+  padding: 5px;
+  background-color: #737373;
+  border-color: #73ffcd;
+  border-width: thick;
+  border-style: double;
+  color: #73ffcd;
+}
+.collapsable {
+  display: none;
+  margin-top: 10%;
+}
+.filterbtn:hover {
+  opacity: 0.5;
+}
+
+.filterbtn-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+.grid-item {
+  width: 80%;
+  margin: 0 auto 0 auto;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.grid-item select,
+.grid-item input {
+  margin: 10% 0 10% 0;
+  border-radius: 30px;
+  width: 80%;
+  font-size: 20px;
+  background-color: #737373;
+  border-color: #73ffcd;
+  border-width: thick;
+  border-style: double;
+  color: #73ffcd;
+  text-align: center;
+}
+.grid-item input {
+  margin-top: 0;
+}
+h3 {
+  font-size: 28px;
+  text-align: center;
+  color: #737373;
+}
