@@ -1,6 +1,7 @@
 body {
   font-family: Helvetica, Sans-Serif;
   font-size: 20px;
+  background-color: #d1fff9;
 }
 
 .smallfont {
@@ -19,6 +20,8 @@ table.rightAlignTD:first-child td {
 .buttonContainer {
   border-radius: 20px;
   font-size: 18px;
-  cursor: pointer;
   width: 100%;
+}
+button {
+  cursor: pointer;
 }

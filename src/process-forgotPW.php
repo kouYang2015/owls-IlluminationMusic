@@ -10,7 +10,6 @@ $playlistName = $_POST['playlistName'];
 <head>
   <title>Illumination Music - Forgot Password Results</title>
   <link rel="stylesheet" type="text/css" href="css/theme.css" />
-  <link rel="stylesheet" type="text/css" href="css/header.css" />
 </head>
 
 <body>
