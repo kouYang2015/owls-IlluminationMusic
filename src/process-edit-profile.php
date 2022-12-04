@@ -36,7 +36,7 @@ include 'database.php';
     }
     if (isset($_POST['updatePw'])) {
       $usernameToSearchFor = 'johndoe123';
-      if (validatePassword($usernameToSearchFor, $currentPassword)) {
+      if (validateUsernamePassword($usernameToSearchFor, $currentPassword)) {
         if ($newPassword == $newPassword_confirm) {
           updatePassword($usernameToSearchFor, $newPassword);
         } else {
