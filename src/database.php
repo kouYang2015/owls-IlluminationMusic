@@ -102,8 +102,8 @@ function validateUsernameEmail($login_user)
 
 function validateUsernamePassword($username, $password)
 {
-    //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
-    $db = new mysqli("localhost", "root", "", "illumination_local");
+    @$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+    //$db = new mysqli("localhost", "root", "", "illumination_local");
     if (mysqli_connect_errno()) {
         echo "<p>Could not validate password<br/>
         Please try again later.</p>";
@@ -127,8 +127,8 @@ function validateUsernamePassword($username, $password)
 
 function validateEmailPassword($email, $password)
 {
-    //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
-    $db = new mysqli("localhost", "root", "", "illumination_local");
+    @$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+    //$db = new mysqli("localhost", "root", "", "illumination_local");
     if (mysqli_connect_errno()) {
         echo "<p>Could not validate password<br/>
         Please try again later.</p>";
