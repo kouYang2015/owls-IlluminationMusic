@@ -16,11 +16,11 @@
     if (validateUsernameEmail($login_user)) {
       if (filter_var($login_user, FILTER_VALIDATE_EMAIL) && validateEmailPassword($login_user, $login_password)) {
         setSession();
-        loginUser($login_user);
+        loginUser($_POST['login_user']);
       } 
       elseif (validateUsernamePassword($login_user, $login_password)) {
         setSession();
-        loginUser($login_user);
+        loginUser($_POST['login_user']);
       } 
       else {
         header('Location: login.php?errcode=1&login_user='.$login_user);
