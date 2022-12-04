@@ -5,12 +5,10 @@
     <title>Illumination Music - Logout</title>
     <link rel="stylesheet" type="text/css" href="css/theme.css" />
     <link rel="stylesheet" type="text/css" href="css/logout.css" />
-    <link rel="stylesheet" type="text/css" href="css/header.css" />
 </head>
 
 <body>
     <?php
-
     include 'session.php';
     logoutUser($_SESSION['username']);
     include 'header.php';

@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="css/header.css" />
 <?php
 include_once 'session.php'; // check if username exists in $_Session
 
@@ -85,7 +86,7 @@ function showHomeOnlyHeader()
 function findHeader()
 {
     $homeOnly_list = array(
-        'signup.php', 'process-signup.php', 'process-login.php', 'login.php', 'forgot-password.php',
+        'signup.php', 'process-signup.php', 'login.php', 'forgot-password.php',
         'process-forgotPW.php', 'logout.php'
     );
     foreach ($homeOnly_list as $pageName) {

@@ -5,7 +5,6 @@
   <title>Illumination Music - Login</title>
   <link rel="stylesheet" type="text/css" href="css/theme.css" />
   <link rel="stylesheet" type="text/css" href="css/login.css" />
-  <link rel="stylesheet" type="text/css" href="css/header.css" />
 </head>
 
 <body>
