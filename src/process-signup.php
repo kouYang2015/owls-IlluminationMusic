@@ -14,12 +14,11 @@ include 'database.php';
 <head>
   <title>Illumination Music - Signup Results</title>
   <link rel="stylesheet" type="text/css" href="css/theme.css">
+
 </head>
 
 <body>
-  <div class="navbar">
-    <a href="homePage.html"><img src="https://brandeps.com/icon-download/M/Music-icon-vector-03.svg" style="width: 50px; height: 50px" /></a>
-  </div>
+  <?php include 'header.php'; ?>
   <h1 align="center">Signup Results</h1>
   <div align="center">
     <h3>Your Entries:</h3>
@@ -32,12 +31,12 @@ include 'database.php';
       } else if ($password != $password_confirm) {
         echo 'Password & password confirmation does not match!';
       }
-      echo '<a href="signup.html"><button type="submit" class="buttonContainer">Try Again</button></a>';
+      echo '<a href="signup.php"><button type="submit" class="buttonContainer">Try Again</button></a>';
     }
 
     ?>
     <br>
-    <a href="login.html"><button type="submit" class="buttonContainer">Login</button></a>
+    <a href="login.php"><button type="submit" class="buttonContainer">Login</button></a>
   </div>
 </body>
 

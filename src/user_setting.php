@@ -8,22 +8,7 @@
 </head>
 
 <body>
-  <header>
-    <div class="navbar">
-      <a href="homePage.html"><img src="https://brandeps.com/icon-download/M/Music-icon-vector-03.svg" style="width:50px;height:50px;"></a>
-      <a href="homePage.html">Home</a>
-      <a href="userpage.php">Playlist</a>
-
-      <div class="dropdown">
-        <img class="dropbtn" src="https://pic.onlinewebfonts.com/svg/img_24787.png" style="width:40px;height:40px;">
-        <div class="dropdown-content">
-          <a href="user_setting.php">Account</a>
-          <a href="EditProfile.php">Security</a>
-          <a href="logout.php">Log out</a>
-        </div>
-      </div>
-    </div>
-  </header>
+  <?php include_once 'header.php'; ?>
   <h1>Account Overview</h1>
   <div class="profile_icon">
     <?php
@@ -92,7 +77,7 @@
 
   <br>
   <div style="text-align: center">
-    <a href="EditProfile.php"><button type="submit" class="edit" id="edit" value="Edit Profile">Edit Profile</button></a>
+    <a href="edit-profile.php"><button type="submit" class="edit" id="edit" value="Edit Profile">Edit Profile</button></a>
     <br><br>
     <button type="submit" class="deletebtn" id="delete" value="delete Account">Delete Account</button>
   </div>
