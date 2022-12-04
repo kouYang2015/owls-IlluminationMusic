@@ -10,38 +10,58 @@
 
 <body>
   <?php include 'header.php'; ?>
-  <div class="text">
-    <h1>Illumination Music</h1>
+  <div>
+    <h2>Login</h2>
   </div>
-
+  <?php 
+  if (isset($_GET['errcode'])) {
+    switch($_GET['errcode']) {
+      case(1):
+        echo '<strong>Failed to login! Username or password incorrect</strong>';
+        break;
+      case(2):
+        echo '<strong>Username/email does not exist!</strong>';
+        break;
+      case(3):
+        echo '<strong>Username/email or password missing!</strong>';
+        break;
+      default:
+        echo '<strong>Something went wrong. Try again!</strong>';
+        break;
+    }
+  }
+  ?>
   <form action="process-login.php" method="post">
     <div class="email_table">
-      <table class="list">
-        <tr class="email">
-          <th class="left_column">Email:<br /><br /></th>
-          <th>
-            <input type="text" id="login_address" name="login_address" size="50" placeholder="Enter your email address" required="true" /><br /><br />
-          </th>
+      <table>
+        <tr>
+          <th>Username/Email:</th>
+          <td>
+            <input type="text" name="login_user" size="50" placeholder="Enter your username/email address" required="true" 
+            <?php 
+              if (isset($_GET['login_user'])) {
+                echo 'value = "'.htmlspecialchars($_GET['login_user']).'"';
+              }
+            ?>
+            />
+          </td>
         </tr>
-        <tr class="password">
-          <th class="left_column">Password:<br /><br /></th>
-          <th>
-            <input type="text" id="confirm_address" name="login_password" size="50" placeholder="Enter your password" required="true" /><br /><br />
-          </th>
+        <tr>
+          <th>Password:</th>
+          <td>
+            <input type="password" name="login_password" size="50" placeholder="Enter your password" required="true" />
+          </td>
         </tr>
       </table>
     </div>
     <div class="submitbtn">
-      <a href="process-login.php">
-        <input type="submit" id="loginbtn" value="Log in" />
-      </a>
+      <input type="submit" id="loginbtn" name="request_login" value="Login" />
     </div>
   </form>
-
+  <br />
   <div class="forgot_password">
-    <a href="forgot-password.php">Forgot Password?</a>
+    <a href="forgot-password.php">Reset Password</a>
   </div>
-  <br /><br />
 </body>
 
 </html>

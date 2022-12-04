@@ -1,6 +1,5 @@
-.text {
+body {
   text-align: center;
-  font-size: 40px;
 }
 
 input {
@@ -9,7 +8,7 @@ input {
   font-size: 17px;
 }
 
-.left_column {
+table tr th:first-child {
   text-align: right;
   font-size: 25px;
 }
@@ -19,8 +18,9 @@ table {
   margin-right: auto;
 }
 
-.forgot_password {
-  text-align: center;
+td {
+  padding-top: 1%;
+  padding-bottom: 1%;
 }
 
 .forgot_password:hover {
@@ -35,14 +35,10 @@ table {
   height: 40px;
 }
 
-#edit:hover {
-  font-weight: bold;
-}
-
-.submitbtn {
-  text-align: center;
-}
-
 #loginbtn:hover {
   font-weight: bold;
+}
+strong {
+  font-size: 30px;
+  color: red;
 }
