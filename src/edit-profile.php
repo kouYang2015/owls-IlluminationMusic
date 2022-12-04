@@ -5,8 +5,6 @@
     <title>Illumination Music - Edit Profile</title>
     <link rel="stylesheet" type="text/css" href="css/theme.css" />
     <link rel="stylesheet" type="text/css" href="css/editProfile.css" />
-    <link rel="stylesheet" type="text/css" href="css/header.css" />
-
 </head>
 
 <body>

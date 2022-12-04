@@ -5,7 +5,6 @@
   <title>Illumination Music - Edit Playlist</title>
   <link rel="stylesheet" type="text/css" href="css/theme.css" />
   <link rel="stylesheet" type="text/css" href="css/editPlaylist.css" />
-  <link rel="stylesheet" type="text/css" href="css/header.css" />
 
 </head>
 

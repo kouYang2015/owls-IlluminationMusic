@@ -17,7 +17,6 @@ include 'database.php';
   <title>Illumination Music - Edit Profile Results</title>
   <link rel="stylesheet" type="text/css" href="css/theme.css" />
   <link rel="stylesheet" type="text/css" href="css/process_edit_profile.css" />
-  <link rel="stylesheet" type="text/css" href="css/header.css" />
 </head>
 
 <body>

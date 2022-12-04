@@ -5,7 +5,6 @@
     <title>Illumination Music - Home</title>
     <link rel="stylesheet" type="text/css" href="css/theme.css" />
     <link rel="stylesheet" type="text/css" href="css/homepage.css" />
-    <link rel="stylesheet" type="text/css" href="css/header.css" />
 </head>
 
 <body>
