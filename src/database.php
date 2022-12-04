@@ -93,9 +93,6 @@ function validateUsernameEmail($login_user)
 
     $validated = false;
     while ($stmt->fetch()) {
-        //$stmt->bind_result($fetched_username, $fetched_useremail);
-        echo 'db username: '.$fetched_username . ' ';
-        echo 'db user email: '.$fetched_useremail;
         if ($fetched_username == $login_user || $fetched_useremail == $login_user) {
             $validated = true;
         }
