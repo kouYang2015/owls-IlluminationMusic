@@ -17,7 +17,6 @@ include 'database.php';
   <title>Illumination Music - Edit Profile Results</title>
   <link rel="stylesheet" type="text/css" href="css/theme.css" />
   <link rel="stylesheet" type="text/css" href="css/process_edit_profile.css" />
-  <link rel="stylesheet" type="text/css" href="css/header.css" />
 </head>
 
 <body>
@@ -31,21 +30,21 @@ include 'database.php';
         updateEmail($usernameToSearchFor, $newEmail);
       } else {
         echo 'Email & email confirmation does not match! <br>';
-        echo '<a href="signup.html"><button type="submit" class="buttonContainer">Try Again</button></a>';
+        echo '<a href="edit-profile.php"><button type="submit" class="buttonContainer">Try Again</button></a>';
       }
     }
     if (isset($_POST['updatePw'])) {
       $usernameToSearchFor = 'johndoe123';
-      if (validatePassword($usernameToSearchFor, $currentPassword)) {
+      if (validateUsernamePassword($usernameToSearchFor, $currentPassword)) {
         if ($newPassword == $newPassword_confirm) {
           updatePassword($usernameToSearchFor, $newPassword);
         } else {
           echo 'New password & password confirmation does not match!';
-          echo '<a href="signup.html"><button type="submit" class="buttonContainer">Try Again</button></a>';
+          echo '<a href="edit-profile.php"><button type="submit" class="buttonContainer">Try Again</button></a>';
         }
       } else {
         echo 'Password does not match current password!';
-        echo '<a href="signup.html"><button type="submit" class="buttonContainer">Try Again</button></a>';
+        echo '<a href="edit-profile.php"><button type="submit" class="buttonContainer">Try Again</button></a>';
       }
     }
     ?>

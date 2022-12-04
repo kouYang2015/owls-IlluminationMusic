@@ -4,7 +4,6 @@
 <head>
   <title>Illumination Music - Signup</title>
   <link rel="stylesheet" type="text/css" href="css/theme.css" />
-  <link rel="stylesheet" type="text/css" href="css/header.css" />
 </head>
 
 <body>
@@ -13,7 +12,7 @@
   <div align="center">
     <span>Already have an account?</span>
     <a href="login.php">Log in</a>
-    <form action="process_signup.php" method="POST">
+    <form action="process-signup.php" method="POST">
       <table class="rightAlignTD">
         <tr>
           <td><label for="username">Username:</label></td>

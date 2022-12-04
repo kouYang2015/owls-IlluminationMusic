@@ -5,7 +5,6 @@
   <title>Illumination Music - User settings</title>
   <link rel="stylesheet" type="text/css" href="css/theme.css" />
   <link rel="stylesheet" type="text/css" href="css/user_setting.css" />
-  <link rel="stylesheet" type="text/css" href="css/header.css" />
 </head>
 
 <body>
@@ -76,7 +75,7 @@
 
   <br>
   <div style="text-align: center">
-    <a href="EditProfile.php"><button type="submit" class="edit" id="edit" value="Edit Profile">Edit Profile</button></a>
+    <a href="edit-profile.php"><button type="submit" class="edit" id="edit" value="Edit Profile">Edit Profile</button></a>
     <br><br>
     <button type="submit" class="deletebtn" id="delete" value="delete Account">Delete Account</button>
   </div>

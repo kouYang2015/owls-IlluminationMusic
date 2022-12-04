@@ -14,7 +14,6 @@ include 'database.php';
 <head>
   <title>Illumination Music - Signup Results</title>
   <link rel="stylesheet" type="text/css" href="css/theme.css">
-  <link rel="stylesheet" type="text/css" href="css/header.css" />
 
 </head>
 
@@ -32,12 +31,12 @@ include 'database.php';
       } else if ($password != $password_confirm) {
         echo 'Password & password confirmation does not match!';
       }
-      echo '<a href="signup.html"><button type="submit" class="buttonContainer">Try Again</button></a>';
+      echo '<a href="signup.php"><button type="submit" class="buttonContainer">Try Again</button></a>';
     }
 
     ?>
     <br>
-    <a href="login.html"><button type="submit" class="buttonContainer">Login</button></a>
+    <a href="login.php"><button type="submit" class="buttonContainer">Login</button></a>
   </div>
 </body>
 
