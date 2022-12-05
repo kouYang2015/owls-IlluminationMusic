@@ -406,3 +406,71 @@ function retrieveSongsYear($year_max,$year_min){
         $db->close();
         return $retrieved_songs;
 }
+
+function insertNewPlaylist($username ,$playlist_to_save) {
+    //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+    $userId = retrieveUserId($username);
+    $playlist_name = "New Playlist";
+    @$db = mysqli_connect("localhost", "root", "", "illumination_local"); //Use when working offline and locally
+    if (mysqli_connect_errno()) {
+        echo "<p>Error: Could not register user.<br/>
+          Please try again later.</p>";
+        exit;
+    }
+    echo 'id retrieved '. $userId;
+    $query = "INSERT INTO playlists(user_id, playlist_name) VALUES(?, ?)";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param('ss', $userId, $playlist_name);
+    $stmt->execute();
+
+    if ($stmt->affected_rows > 0) {
+        echo 'success';
+    } else {
+        echo "<p>An error has occurred.<br/>
+           Could not sign up.</p>";
+    }
+    $new_playlistId = $db->insert_id;
+    $added_song = false;
+    foreach ($playlist_to_save as $song){
+        $songId = $song->getID();
+        $query = "INSERT INTO playlist_has_song(playlist_id, song_id) VALUES(?, ?)";
+        $stmt = $db->prepare($query);
+        $stmt->bind_param('ss', $new_playlistId, $songId);
+        $stmt->execute();
+
+        if ($stmt->affected_rows > 0) {
+            echo 'Added song successfully';
+            $added_song = true;
+        } else {
+            echo "<p>An error has occurred.<br/>
+            Could not sign up.</p>";
+        }
+        $stmt->free_result();
+    }
+    $stmt->free_result();
+    $db->close();
+    return $added_song;
+}
+function updatePlaylist($playist_id, $playlist_to_save){
+    echo 'IN progress';
+}
+function retrieveUserId ($username){
+     //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+     @$db = mysqli_connect("localhost", "root", "", "illumination_local"); //Use when working offline and locally
+     if (mysqli_connect_errno()) {
+         echo "<p>Error: Could not register user.<br/>
+           Please try again later.</p>";
+         exit;
+     }
+     $query = "SELECT user_id FROM users WHERE username = ?";
+     $stmt = $db->prepare($query);
+     $stmt->bind_param('s', $username);
+     $stmt->execute();
+     $stmt->store_result();
+ 
+     $stmt->bind_result($user_id);
+     $stmt->fetch();
+     $stmt->free_result();
+     $db->close();
+     return $user_id;
+}

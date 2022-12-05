@@ -11,18 +11,10 @@
     <div class="info-container">
       <h1 contenteditable="true">New Playlist</h1>
       <img src="images/illumination_logo.png" style="width: 250px; height: 250px" />
+      
       <div>
         <a href="generate-playlist.php"><button type="button" value="gen">Generate New Playlist</button></a>
       </div>
-      <?php 
-      if (isset($_SESSION['username'])){
-        if (isset($_POST['requestSave'])){
-          include 'song.php';
-          echo 'Playlist Saved!';
-          echo sizeof($_SESSION['temp_playlist']);
-        }
-      }
-      ?>
     </div>
 
     <table id="playlistTable">
@@ -86,8 +78,8 @@
     <?php if (isset($_SESSION['username'])){
       $_SESSION['temp_playlist'] = serialize($new_song_list);
       echo 
-      '<form action="playlist.php" method="post">
-        <button id="saveButton" type="submit" name="requestSave" value="requestSave">Save Playlist</button>
+      '<form action="process-save-playlist.php" method="post">
+        <button id="saveButton" type="submit" name="saveNewPlaylist" value="requestSave">Save Playlist</button>
       </form>';
       }
       ?>
