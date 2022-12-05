@@ -30,8 +30,8 @@
           foreach($new_song_list as $song) {
             echo '<tr><td>' . $song->getTitle() . '</td><td>' . $song->getArtist() . '</td><td>' . $song->getAlbum() .'</td></tr>';
           }
-        } elseif (isset($_SESSION['playlistId'])){
-          $new_song_list = retreivePlaylist($_SESSION['playlistId']);
+        } elseif (isset($_POST['playlist_id'])){
+          $new_song_list = retreivePlaylist($_POST['playlist_id']);
           foreach($new_song_list as $song) {
             echo '<tr><td>' . $song->getTitle() . '</td><td>' . $song->getArtist() . '</td><td>' . $song->getAlbum() .'</td></tr>';
           }
