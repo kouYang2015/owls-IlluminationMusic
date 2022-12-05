@@ -78,6 +78,24 @@ function updateEmail($usernameToSearchFor, $newEmail)
 function updateProfileImg ($username, $imgfilepath) {
     //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
     $db = new mysqli("localhost", "root", "", "illumination_local");
+    if (mysqli_connect_errno()) {
+        return false;
+        exit;
+    }
+    $query = "UPDATE user_profile_images, users SET profile_image_filename = ? WHERE (username = ?) ";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param('ss', $imgfilepath, $username);
+    $stmt->execute();
+
+    if ($stmt->affected_rows > 0) {
+        $stmt->free_result();
+        $db->close();
+        return true;
+    } else {
+        $stmt->free_result();
+        $db->close();
+        return false;
+    }
 }
 
 function validateUsernameEmail($login_user)
@@ -150,7 +168,6 @@ function validateEmailPassword($email, $password)
     $stmt->execute();
     $stmt->store_result();
     $stmt->bind_result($user_password);
-    $validated = false;
     while ($stmt->fetch()) {
         if ($user_password == $password) {
             $stmt->free_result();
