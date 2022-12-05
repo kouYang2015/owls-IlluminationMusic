@@ -78,8 +78,8 @@ function updateEmail($usernameToSearchFor, $newEmail)
 
 function updateProfileImg($username, $imgfilepath)
 {
-    //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
-    $db = new mysqli("localhost", "root", "", "illumination_local");
+    @$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+    //$db = new mysqli("localhost", "root", "", "illumination_local");
     if (mysqli_connect_errno()) {
         return false;
         exit;
@@ -184,8 +184,8 @@ function validateEmailPassword($email, $password)
 
 function retrieveProfileImg($username)
 {
-    //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
-    $db = new mysqli("localhost", "root", "", "illumination_local");
+    @$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+    //$db = new mysqli("localhost", "root", "", "illumination_local");
     if (mysqli_connect_errno()) {
         return null;
     } else {
@@ -208,8 +208,8 @@ function retrieveProfileImg($username)
 
 function retrievePlaylists($username)
 {
-    //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
-    $db = new mysqli("localhost", "root", "", "illumination_local");
+    @$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+    //$db = new mysqli("localhost", "root", "", "illumination_local");
     if (mysqli_connect_errno()) {
         return null;
         exit;
@@ -237,8 +237,8 @@ function retrievePlaylists($username)
 
 function retrieveSongsGenre($genre)
 {
-    //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
-    $db = new mysqli("localhost", "root", "", "illumination_local");
+    @$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+    //$db = new mysqli("localhost", "root", "", "illumination_local");
     if (mysqli_connect_errno()) {
         return null;
         exit;
@@ -276,8 +276,8 @@ function retrieveSongsGenre($genre)
 
 function retrieveSongsAlbum($album)
 {
-    //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
-    $db = new mysqli("localhost", "root", "", "illumination_local");
+    @$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+    //$db = new mysqli("localhost", "root", "", "illumination_local");
     if (mysqli_connect_errno()) {
         return null;
         exit;
@@ -313,8 +313,8 @@ function retrieveSongsAlbum($album)
 
 function retrieveSongsArtist($artist)
 {
-    //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
-    $db = new mysqli("localhost", "root", "", "illumination_local");
+    @$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+    //$db = new mysqli("localhost", "root", "", "illumination_local");
     if (mysqli_connect_errno()) {
         return null;
         exit;
@@ -350,8 +350,8 @@ function retrieveSongsArtist($artist)
 
 function retrieveSongsLang($lang)
 {
-    //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
-    $db = new mysqli("localhost", "root", "", "illumination_local");
+    @$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+    //$db = new mysqli("localhost", "root", "", "illumination_local");
     if (mysqli_connect_errno()) {
         return null;
         exit;
@@ -388,8 +388,8 @@ function retrieveSongsLang($lang)
 
 function retrieveSongsYear($year_max, $year_min)
 {
-    //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
-    $db = new mysqli("localhost", "root", "", "illumination_local");
+    @$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+    //$db = new mysqli("localhost", "root", "", "illumination_local");
     if (mysqli_connect_errno()) {
         return null;
         exit;
@@ -424,10 +424,10 @@ function retrieveSongsYear($year_max, $year_min)
 }
 
 function insertNewPlaylist($username ,$playlist_to_save) {
-    //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
     $userId = retrieveUserId($username);
     $playlist_name = "New Playlist";
-    @$db = mysqli_connect("localhost", "root", "", "illumination_local"); //Use when working offline and locally
+    @$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+    //@$db = mysqli_connect("localhost", "root", "", "illumination_local"); //Use when working offline and locally
     if (mysqli_connect_errno()) {
         echo "<p>Error: Could not register user.<br/>
           Please try again later.</p>";
@@ -480,8 +480,8 @@ function updatePlaylist($playist_id, $playlist_to_save){
     echo 'IN progress';
 }
 function retrieveUserId ($username){
-     //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
-     @$db = mysqli_connect("localhost", "root", "", "illumination_local"); //Use when working offline and locally
+     @$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+     //@$db = mysqli_connect("localhost", "root", "", "illumination_local"); //Use when working offline and locally
      if (mysqli_connect_errno()) {
          echo "<p>Error: Could not register user.<br/>
            Please try again later.</p>";
@@ -501,8 +501,8 @@ function retrieveUserId ($username){
 }
 
 function retreivePlaylist($playlist_id) {
-    //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
-    $db = new mysqli("localhost", "root", "", "illumination_local");
+    @$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+    //$db = new mysqli("localhost", "root", "", "illumination_local");
     if (mysqli_connect_errno()) {
         return null;
         exit;
