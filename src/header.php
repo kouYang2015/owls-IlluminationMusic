@@ -1,4 +1,6 @@
 <link rel="stylesheet" type="text/css" href="css/header.css" />
+<link href='https://fonts.googleapis.com/css?family=Fredoka One' rel='stylesheet'>
+
 <?php
 include_once 'session.php'; // check if username exists in $_Session
 
