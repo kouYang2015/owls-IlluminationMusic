@@ -9,14 +9,14 @@
 
 <body>
     <?php include 'header.php'; ?>
-    <h1 align="center">Illumination Music</h1>
+    <h1 align="center">ILLUMINATION MUSIC</h1>
     <div class="genPlaylist-container">
         <form action="generate-playlist.php">
             <input class="buttonContainer generateButton" type="submit" value="Generate New PlayList" />
         </form>
     </div>
     <div class="newReleases-containers">
-        <h3>New Releases</h3>
+        <h3 align="center">NEW RELEASES</h3>
         <table>
             <tr>
                 <td>

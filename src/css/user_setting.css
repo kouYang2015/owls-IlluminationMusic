@@ -28,3 +28,6 @@ h1 {
 .errorText {
   color: red;
 }
+.successText {
+  color: green;
+}

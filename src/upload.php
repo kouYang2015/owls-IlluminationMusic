@@ -21,7 +21,6 @@
     }
     function checkFileType()
     {
-        echo 'Checking file type';
         global $uploadErrors;
         if (getimagesize($_FILES['fileToUpload']['tmp_name']) === false) {
             $uploadErrors[] = 'Not an image file.';
@@ -37,19 +36,20 @@
         global $uploadErrors;
         if (empty($uploadErrors) == 1) {
             if (file_exists($target_file_path)) {
-                //TODO: update database file path string.
-                echo "<img src=" . $target_file_path . " height=180 width=180 />";
-                //TODO: show new database file path string for user profile image
+                if (updateProfileImg($_SESSION['username'], $target_file_path)) {
+                    echo '<p class="successText">Successfully Uploaded!</p>';
+                } else {
+                    array_push($uploadErrors, 'Something went wrong during upload. Try again.');
+                }
             } elseif (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file_path)) {
-                //TODO: update database file path string.
-                echo "<img src=" . $target_file_path . " height=180 width=180 />";
-                //TODO: show new database file path string for user profile image
+                if (updateProfileImg($_SESSION['username'], $target_file_path)) {
+                    echo '<p class="successText">Successfully Uploaded!</p>';
+                } else {
+                    array_push($uploadErrors, 'Something went wrong during upload. Try again.');
+                }
             }
         } else {
-            echo '<img src="https://brandeps.com/icon-download/M/Music-icon-vector-03.svg" width=180 height=180">';
-            //TODO: load current profile image path from database
-            echo '<br>';
-            echo '<a class="errorText">' . $uploadErrors[0] . '</a>';
+            echo '<p class="errorText">' . $uploadErrors[0] . '</p>';
         }
     }
 
