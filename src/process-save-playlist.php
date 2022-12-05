@@ -3,10 +3,11 @@
 
 <head>
   <title>Illumination Music - Save Playlist</title>
+  <link rel="stylesheet" type="text/css" href="css/theme.css" />
+  <link rel="stylesheet" type="text/css" href="css/process-login.css" />
 </head>
 <body>
   <?php include 'header.php'; ?>
-  <h1 align="center">Save Playlist</h1>
 
 <?php
 include 'database.php';
@@ -14,7 +15,12 @@ if (isset($_SESSION['username'])){
     if (isset ($_POST['saveNewPlaylist']) && isset($_SESSION['temp_playlist'])){
         $playlist_to_save = unserialize($_SESSION['temp_playlist']);
         if (insertNewPlaylist($_SESSION['username'], $playlist_to_save)){
-            echo 'New Playlist saved!';
+            echo '  <div class="container">
+            <h1>Playlist Saved!</h1>
+            <img src="images/green_checkmark.png" alt="check">
+            <h2>You have been successfully logged in!</h2>
+            <a href="home.php">Go back to homepage</a>
+          </div>';
             unset($_SESSION['temp_playlist']);
         } else {
             echo 'Something went wrong. Could not save new playlist.';
