@@ -25,6 +25,7 @@ include 'database.php';
     <?php
     if ($email == $email_confirm && $password == $password_confirm) {
       insertNewUser($uname, $fname, $lname, $email, $password);
+      echo 'Successfully Registered!';
     } else {
       if ($email != $email_confirm) {
         echo 'Email & email confirmation does not match! <br>';
