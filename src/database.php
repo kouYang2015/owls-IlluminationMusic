@@ -446,7 +446,7 @@ function insertNewPlaylist($username ,$playlist_to_save) {
            Could not sign up.</p>";
     }
     //Add default image to playlist
-    $new_playlistId = $db->insert_id;
+    $new_playlistId = (int) $db->insert_id;
     $query = "INSERT INTO playlist_images(playlist_id) VALUES(?)";
     $stmt = $db->prepare($query);
     $stmt->bind_param('s', $new_playlistId);
@@ -471,7 +471,6 @@ function insertNewPlaylist($username ,$playlist_to_save) {
             echo "<p>An error has occurred.<br/>
             Could not sign up.</p>";
         }
-        $stmt->free_result();
     }
     $stmt->free_result();
     $db->close();
@@ -499,4 +498,41 @@ function retrieveUserId ($username){
      $stmt->free_result();
      $db->close();
      return $user_id;
+}
+
+function retreivePlaylist($playlist_id) {
+    //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+    $db = new mysqli("localhost", "root", "", "illumination_local");
+    if (mysqli_connect_errno()) {
+        return null;
+        exit;
+    }
+    $query =
+    "SELECT
+        songs.song_id,
+        songs.title,
+        albums.album_name,
+        artists.artist_name
+    FROM
+        `playlist_has_song`
+    INNER JOIN songs ON songs.song_id = playlist_has_song.song_id
+    INNER JOIN albums ON albums.album_id = songs.album_id
+    INNER JOIN song_has_artist ON song_has_artist.song_id = songs.song_id
+    INNER JOIN artists ON artists.artist_id = song_has_artist.artist_id
+    WHERE
+        playlist_id = ?";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param('s', $playlist_id);
+    $stmt->execute();
+    $stmt->store_result();
+    $stmt->bind_result($song_id, $song_title, $song_album, $song_artist);
+
+    $retrieved_songs = array();
+    while ($stmt->fetch()) {
+        $song = new Song($song_id, $song_title, $song_album, $song_artist);
+        array_push($retrieved_songs, $song);
+    }
+    $stmt->free_result();
+    $db->close();
+    return $retrieved_songs;
 }
