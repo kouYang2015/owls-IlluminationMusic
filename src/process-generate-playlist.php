@@ -75,7 +75,7 @@
       ?>
     </table>
     <div class="info-container">
-    <?php if (isset($_SESSION['username'])){
+    <?php if (isset($_SESSION['username']) && $new_song_list != null){
       $_SESSION['temp_playlist'] = serialize($new_song_list);
       echo 
       '<form action="process-save-playlist.php" method="post">
