@@ -433,19 +433,30 @@ function insertNewPlaylist($username ,$playlist_to_save) {
           Please try again later.</p>";
         exit;
     }
-    echo 'id retrieved '. $userId;
+    //Add default image to playlist
     $query = "INSERT INTO playlists(user_id, playlist_name) VALUES(?, ?)";
     $stmt = $db->prepare($query);
     $stmt->bind_param('ss', $userId, $playlist_name);
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
-        echo 'success';
+        // do nothing;
     } else {
         echo "<p>An error has occurred.<br/>
            Could not sign up.</p>";
     }
+    //Add default image to playlist
     $new_playlistId = $db->insert_id;
+    $query = "INSERT INTO playlist_images(playlist_id) VALUES(?)";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param('s', $new_playlistId);
+    $stmt->execute();
+    if ($stmt->affected_rows > 0) {
+        // do nothing;
+    } else {
+        echo "<p>An error has occurred.<br/>
+           Could not sign up.</p>";
+    }
     $added_song = false;
     foreach ($playlist_to_save as $song){
         $songId = $song->getID();
@@ -455,7 +466,6 @@ function insertNewPlaylist($username ,$playlist_to_save) {
         $stmt->execute();
 
         if ($stmt->affected_rows > 0) {
-            echo 'Added song successfully';
             $added_song = true;
         } else {
             echo "<p>An error has occurred.<br/>
