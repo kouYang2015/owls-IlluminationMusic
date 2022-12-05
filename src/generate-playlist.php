@@ -12,7 +12,7 @@
 <body>
   <?php include 'header.php' ?>
   <h1 align="center">New Playlist</h1>
-  <form action="process-generate-playlist.php" method="get" id="getSelectedbox">
+  <form action="process-generate-playlist.php" method="post" id="getSelectedbox">
     <div class="genPlaylist-container">
       <button type="submit" class="filterbtn" value="Generate Playlist">Generate Playlist</button>
       <h3>Select filters below to generate a new playlist!</h3>
@@ -71,10 +71,10 @@
         <button type="button" onclick="visibility('year_collapse')" class="filterbtn">Year</button>
         <div id="year_collapse" class="collapsable">
           <div><label for="year-min">Min Release Year</label>
-          <input type="number" id="year-min" min="1900" max="2023" step="1" value="2000" size="4" />
+            <input type="number" name="year-min" id="year-min" min="1980" max="2023" step="1" size="4" />
           </div>
           <div><label for="year-max">Max Release Year</label>
-          <input type="number" id="year-max" min="1900" max="2023" step="1" value="2000" size="4" />
+            <input type="number" name="year-max" id="year-max" min="1980" max="2023" step="1" size="4" />
           </div>
         </div>
       </div>
@@ -83,27 +83,42 @@
         <div id="album-collapse" class="collapsable">
           <select name="album[]">
             <option value="select">Select</option>
-            <option value="album1">album1</option>
-            <option value="album2">album2</option>
-            <option value="album3">album3</option>
-            <option value="album4">album4</option>
-            <option value="album5">album5</option>
+            <option value="Midnights">Midnights</option>
+            <option value="Revival">Revival</option>
+            <option value="The Eminem Show">The Eminem Show</option>
+            <option value="Certified Lover Boy">Certified Lover Boy</option>
+            <option value="Lemonade">Lemonade</option>
+            <option value="Beyoncé">Beyoncé</option>
+            <option value="Proof">Proof</option>
+            <option value="Face Yourself">Face Yourself</option>
+            <option value="Red">Red</option>
+            <option value="Take Care">Take Care</option>
           </select>
           <select name="album[]">
-            <option value="select">Select</option>
-            <option value="album1">album1</option>
-            <option value="album2">album2</option>
-            <option value="album3">album3</option>
-            <option value="album4">album4</option>
-            <option value="album5">album5</option>
+          <option value="select">Select</option>
+            <option value="Midnights">Midnights</option>
+            <option value="Revival">Revival</option>
+            <option value="The Eminem Show">The Eminem Show</option>
+            <option value="Certified Lover Boy">Certified Lover Boy</option>
+            <option value="Lemonade">Lemonade</option>
+            <option value="Beyoncé">Beyoncé</option>
+            <option value="Proof">Proof</option>
+            <option value="Face Yourself">Face Yourself</option>
+            <option value="Red">Red</option>
+            <option value="Take Care">Take Care</option>
           </select>
           <select name="album[]">
-            <option value="select">Select</option>
-            <option value="album1">album1</option>
-            <option value="album2">album2</option>
-            <option value="album3">album3</option>
-            <option value="album4">album4</option>
-            <option value="album5">album5</option>
+          <option value="select">Select</option>
+            <option value="Midnights">Midnights</option>
+            <option value="Revival">Revival</option>
+            <option value="The Eminem Show">The Eminem Show</option>
+            <option value="Certified Lover Boy">Certified Lover Boy</option>
+            <option value="Lemonade">Lemonade</option>
+            <option value="Beyoncé">Beyoncé</option>
+            <option value="Proof">Proof</option>
+            <option value="Face Yourself">Face Yourself</option>
+            <option value="Red">Red</option>
+            <option value="Take Care">Take Care</option>
           </select>
         </div>
       </div>
