@@ -2,122 +2,99 @@
 <html>
 
 <head>
-  <title>Illumination Music - process_generateNewPlaylist</title>
+  <title>Illumination Music - New Playlist</title>
   <link rel="stylesheet" type="text/css" href="css/theme.css" />
-  <link rel="stylesheet" type="text/css" href="css/editPlaylist.css" />
-  <link rel="stylesheet" type="text/css" href="css/header.css" />
-
+  <link rel="stylesheet" type="text/css" href="css/process-generate-playlist.css" />
 </head>
+  <body>
+    <?php include "header.php"; ?>
+    <div class="info-container">
+      <h1 contenteditable="true">New Playlist</h1>
+      <img src="images/illumination_logo.png" style="width: 250px; height: 250px" />
+      <div>
+        <a href="generate-playlist.php"><button type="button" value="gen">Generate New Playlist</button></a>
+      </div>
+      <?php 
+      if (isset($_SESSION['username'])){
+        if (isset($_POST['requestSave'])){
+          include 'song.php';
+          echo 'Playlist Saved!';
+          echo sizeof($_SESSION['temp_playlist']);
+        }
+      }
+      ?>
+    </div>
 
+    <table id="playlistTable">
+      <tr>
+        <th>Title</th>
+        <th>Artist</th>
+        <th>Album</th>
+      </tr>
+      <?php
+      include 'database.php';
+      $new_song_list = array();
+      if (isset($_POST['genre']) && array_key_exists('genre', $_POST)) {
+        $genre_list = $_POST['genre'];
+        foreach ($genre_list as $genre) {
+          if ($genre != 'select' ){
+            $new_song_list = array_merge($new_song_list , retrieveSongsGenre($genre));
+          }
+        }
+      }
+      if (isset($_POST['year-max']) && array_key_exists('year-max', $_POST) && isset($_POST['year-min']) && array_key_exists('year-min', $_POST)) {
+        $year_max = $_POST['year-max'];
+        $year_min = $_POST['year-min'];
+        if ($year_min != "" && $year_max != ""){
+          $new_song_list = array_merge($new_song_list , retrieveSongsYear($year_max,$year_min));
+        }
+      }
+      if (isset($_POST['album']) && array_key_exists('album', $_POST)) {
+        $album_list = $_POST['album'];
+        foreach ($album_list as $album) {
+          if ($album != 'select' ){
+            $new_song_list = array_merge($new_song_list , retrieveSongsAlbum($album));
+          }
+        }
+      }
+      if (isset($_POST['artist']) && array_key_exists('artist', $_POST)) {
+        $artist_list = $_POST['artist'];
+        foreach ($artist_list as $artist) {
+          if ($artist != 'select' ){
+            $new_song_list = array_merge($new_song_list , retrieveSongsArtist($artist));
+          }
+        }
+      }
+      if (isset($_POST['lang']) && array_key_exists('lang', $_POST)) {
+        $lang_list = $_POST['lang'];
+        foreach ($lang_list as $lang) {
+          if ($lang != 'select' ){
+            $new_song_list = array_merge($new_song_list , retrieveSongsLang($lang));
+          }
+        }
+      }
+      while (sizeof($new_song_list) > 20) {
+        array_splice($new_song_list, random_int(0, sizeof($new_song_list)), 1);
+      }
+      shuffle($new_song_list);
+      foreach($new_song_list as $song) {
+        echo '<tr><td>' . $song->getTitle() . '</td><td>' . $song->getArtist() . '</td><td>' . $song->getAlbum() .'</td></tr>';
+      }
+      ?>
+    </table>
+    <div class="info-container">
+    <?php if (isset($_SESSION['username'])){
+      $_SESSION['temp_playlist'] = serialize($new_song_list);
+      echo 
+      '<form action="playlist.php" method="post">
+        <button id="saveButton" type="submit" name="requestSave" value="requestSave">Save Playlist</button>
+      </form>';
+      }
+      ?>
+    </div>
+  </body>
 
-<?php include "header.php"; ?>
-<div class="playlistImage-container">
-  <img src="https://d2rd7etdn93tqb.cloudfront.net/wp-content/uploads/2022/03/spotify-playlist-cover-orange-headphones-032322.jpg" style="width: 250px; height: 250px" />
-</div>
+  <script src="yt-link-script.js"></script>
 
-<div class="playlistTitle-container">
-  <h1 contenteditable="true">Playlist For You</h1>
-</div>
+</html>
 
-<div class="submit_btn_container">
-  <input type="submit" class="buttonContainer saveButton" id="save" value="Save Playlist" />
-  <input type="submit" class="buttonContainer deleteButton" id="delete" value="Delete Playlist" />
-  <input type="button" class="buttonContainer cancelButton" value="Cancel" onclick="history.back()" />
-</div>
-
-
-<?php
-class Songs
-{
-  private $songID;
-  private $genre;
-  private $songTitle;
-  private $artists;
-  private $language;
-  private $album;
-
-  function __construct($songID, $genre, $songTitle, $artists, $language, $album)
-  {
-    $this->songID = $songID;
-    $this->genre = $genre;
-    $this->songTitle = $songTitle;
-    $this->artists = $artists;
-    $this->language = $language;
-    $this->album = $album;
-  }
-
-  public function getID()
-  {
-    return $this->songID;
-  }
-  public function getGenre()
-  {
-    return $this->genre;
-  }
-  public function getTitle()
-  {
-    return $this->songTitle;
-  }
-  public function getArtists()
-  {
-    return $this->artists;
-  }
-  public function getLang()
-  {
-    return $this->language;
-  }
-  public function getAlbum()
-  {
-    return $this->album;
-  }
-
-
-  public function setID()
-  {
-    return $this->songID;
-  }
-  public function setGenre()
-  {
-    return $this->genre;
-  }
-  public function setTitle()
-  {
-    return $this->songTitle;
-  }
-  public function setArtists()
-  {
-    return $this->artists;
-  }
-  public function setLang()
-  {
-    return $this->language;
-  }
-  public function setAlbum()
-  {
-    return $this->album;
-  }
-}
-
-
-$db = new mysqli("localhost", "root", "", "illumination_local");
-if (mysqli_connect_errno()) {
-  echo '<p>Error: Could not connect to database. Please try again later.</p>';
-  exit;
-}
-$sql = "SELECT * FROM songs LEFT JOIN song_has_genre ON songs.song_id = song_has_genre.song_id LEFT JOIN genres ON song_has_genre.genre_id = genre.genre_id";
-$stmt = $db->prepare($sql);
-$stmt->bind_param('s', $usernameToSearchFor);
-$stmt->execute();
-$stmt->store_result();
-
-$stmt->bind_result($user_email);
-
-while ($stmt->fetch()) {
-  echo $songTitle . '<br><br>';
-  "</p>";
-}
-
-
-
-
-?>
