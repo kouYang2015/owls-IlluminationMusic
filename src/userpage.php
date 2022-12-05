@@ -20,33 +20,32 @@
 
   <?php
   $playlistarray = retrievePlaylists($_SESSION['username']);
-  class playlist
-  {
-    private $playlist_ids;
-    private $playlist_names;
-    private $playlist_imgfilename;
+  // class playlist
+  // {
+  //   private $playlist_ids;
+  //   private $playlist_names;
+  //   private $playlist_imgfilename;
 
-    function __construct($playlistID, $playlistName, $imgName)
-    {
-      $this->playlistID = $playlistID;
-      $this->playloistName = $playlistName;
-      $this->imgName = $imgName;
-    }
+  //   function __construct($playlistID, $playlistName, $imgName)
+  //   {
+  //     $this->playlistID = $playlistID;
+  //     $this->playloistName = $playlistName;
+  //     $this->imgName = $imgName;
+  //   }
 
-    public function playlistID()
-    {
-      return $this->playlistID;
-    }
-    public function playloistName()
-    {
-      return $this->playloistName;
-    }
-    public function imgName()
-    {
-      return $this->imgName;
-    }
-  }
-
+  //   public function playlistID()
+  //   {
+  //     return $this->playlistID;
+  //   }
+  //   public function playlistName()
+  //   {
+  //     return $this->playlistName;
+  //   }
+  //   public function imgName()
+  //   {
+  //     return $this->imgName;
+  //   }
+  // }
 
   foreach ($playlistarray as $val) {
     echo '<form action="playlist.php"><input type="hidden" name ="playlist_id" value=" .$val[0] /><table><tr><td style="font-size:23px; font-weight:bold; padding:10px">' . $val[1] . '</td></tr>';
@@ -57,11 +56,6 @@
   <button type="submit" name ="submitbtn"><img <?Php src=.$playlist[2] ?></button></form>';
   }
   ?>
-
-
-
-
-
 
 </body>
 
