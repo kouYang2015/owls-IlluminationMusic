@@ -75,7 +75,8 @@ function updateEmail($usernameToSearchFor, $newEmail)
     }
 }
 
-function updateProfileImg ($username, $imgfilepath) {
+function updateProfileImg($username, $imgfilepath)
+{
     //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
     $db = new mysqli("localhost", "root", "", "illumination_local");
     if (mysqli_connect_errno()) {
@@ -180,11 +181,12 @@ function validateEmailPassword($email, $password)
     return false;
 }
 
-function retrieveProfileImg($username) {
+function retrieveProfileImg($username)
+{
     //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
     $db = new mysqli("localhost", "root", "", "illumination_local");
     if (mysqli_connect_errno()) {
-    return null;
+        return null;
     } else {
         $query = "SELECT profile_image_filename FROM user_profile_images 
         right join users on user_profile_images.user_id = users.user_id WHERE (username = ?) ";
@@ -203,23 +205,34 @@ function retrieveProfileImg($username) {
     }
 }
 
-function retrieveEmail($username){
+function retrievePlaylists($username)
+{
     //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
     $db = new mysqli("localhost", "root", "", "illumination_local");
     if (mysqli_connect_errno()) {
-        echo '<p>Error: Could not connect to database. Please try again later.</p>';
+        return null;
         exit;
     }
-    $user_email = "";
-    $query = "SELECT user_email FROM users WHERE (username = ?)";
+    $query = "SELECT playlist_image_filename, playlist_images.playlist_id, playlists.playlist_name
+              FROM playlist_images
+              INNER JOIN playlists ON playlists.playlist_id = playlist_images.playlist_id
+              INNER JOIN users ON users.user_id = playlists.user_id
+              WHERE username = ?";
     $stmt = $db->prepare($query);
     $stmt->bind_param('s', $username);
     $stmt->execute();
     $stmt->store_result();
-
-    $stmt->bind_result($user_email);
-    $stmt->fetch();
+    $stmt->bind_result($fetched_imgfilename, $fetched_playlist_id, $fetched_playlist_name);
+    $playlist_ids = array();
+    $playlist_names = array();
+    $playlist_imgfilename = array();
+    while ($stmt->fetch()) {
+        array_push($playlist_ids, $fetched_playlist_id);
+        array_push($playlist_names, $fetched_playlist_name);
+        array_push($playlist_imgfilename, $fetched_imgfilename);
+    }
+    $playlists = array($playlist_ids, $playlist_names, $playlist_imgfilename);
     $stmt->free_result();
     $db->close();
-    return $user_email;
+    return $playlists;
 }
