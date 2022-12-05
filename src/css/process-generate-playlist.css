@@ -1,0 +1,42 @@
+.info-container {
+  text-align: center;
+}
+.info-container h1 {
+  width: fit-content;
+  margin: 5px auto 5px auto;
+}
+.info-container button {
+  width: 300px;
+  margin: 20px auto 10px auto;
+  border-radius: 20px;
+  font-size: 18px;
+  width: 250px;
+  height: 50px;
+  font-family: "Fredoka One";
+  letter-spacing: 2px;
+}
+.info-container button:hover {
+  opacity: 0.7;
+}
+.info-container button:active {
+  opacity: 1;
+}
+#saveButton {
+  background: rgb(161, 255, 161);
+}
+table {
+  width: 80%;
+  border-collapse: collapse;
+  padding-bottom: 300px;
+}
+
+td {
+  text-align: center;
+  border-style: solid;
+}
+tr:not(:first-child) {
+  cursor: pointer;
+}
+tr:hover:not(:first-child) {
+  background-color: antiquewhite;
+}
