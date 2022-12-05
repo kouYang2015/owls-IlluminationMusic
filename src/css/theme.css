@@ -1,7 +1,13 @@
+html {
+  margin: 0;
+  height: 100%;
+}
 body {
-  font-family: Helvetica, Sans-Serif;
+  font-family: "Fredoka One";
+  letter-spacing: 2px;
   font-size: 20px;
-  background-color: #d1fff9;
+  margin: 0;
+  height: 100%;
 }
 
 .smallfont {
@@ -21,7 +27,14 @@ table.rightAlignTD:first-child td {
   border-radius: 20px;
   font-size: 18px;
   width: 100%;
+  font-family: "Fredoka One";
+  letter-spacing: 2px;
 }
 button {
   cursor: pointer;
+}
+h1 {
+  color: #81c784;
+  font-family: "Fredoka One";
+  letter-spacing: 5px;
 }
