@@ -1,5 +1,6 @@
 <?php
 include 'song.php';
+include 'playlist_class.php';
 function insertNewUser($username, $first_name, $last_name, $newEmail, $user_password)
 {
     //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
@@ -213,28 +214,25 @@ function retrievePlaylists($username)
         return null;
         exit;
     }
-    $query = "SELECT playlist_image_filename, playlist_images.playlist_id, playlists.playlist_name
-              FROM playlist_images
-              INNER JOIN playlists ON playlists.playlist_id = playlist_images.playlist_id
-              INNER JOIN users ON users.user_id = playlists.user_id
-              WHERE username = ?";
+    $query = "SELECT playlists.playlist_id, playlists.playlist_name, playlist_images.playlist_image_filename
+    FROM playlists
+    INNER JOIN playlist_images ON playlists.playlist_id = playlist_images.playlist_id
+    INNER JOIN users ON users.user_id = playlists.user_id
+    WHERE username = ?";
     $stmt = $db->prepare($query);
     $stmt->bind_param('s', $username);
     $stmt->execute();
     $stmt->store_result();
-    $stmt->bind_result($fetched_imgfilename, $fetched_playlist_id, $fetched_playlist_name);
-    $playlist_ids = array();
-    $playlist_names = array();
-    $playlist_imgfilename = array();
+    $stmt->bind_result($fetched_playlist_id, $fetched_playlist_name, $fetched_imgfilename);
+
+    $playlists = array();
     while ($stmt->fetch()) {
-        array_push($playlist_ids, $fetched_playlist_id);
-        array_push($playlist_names, $fetched_playlist_name);
-        array_push($playlist_imgfilename, $fetched_imgfilename);
+        $playlist_object = new Playlist($fetched_playlist_id, $fetched_playlist_name, $fetched_imgfilename);
+        array_push($playlists, $playlist_object);
     }
-    $playlists = array($playlist_ids, $playlist_names, $playlist_imgfilename);
     $stmt->free_result();
     $db->close();
-    return  $playlists;
+    return $playlists;
 }
 
 function retrieveSongsGenre($genre)

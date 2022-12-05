@@ -21,13 +21,16 @@
   <?php
   $playlistarray = retrievePlaylists($_SESSION['username']);
 
-  foreach ($playlistarray as $val) {
-    echo '<form action="playlist.php"><input type="hidden" name ="playlist_id" value=" .$val[0] /><table><tr><td style="font-size:23px; font-weight:bold; padding:10px">' . $val[1] . '</td></tr>';
-    echo '<tr><td><img src="' . $val[2] . '></td></tr></table></form>';
-
-
-    echo '<form action="playlist.php"><input type="hidden" name ="playlist_id" value=" .$val[0] />;
-  <button type="submit" name ="submitbtn"><img <?Php src=.$playlist[2] ?></button></form>';
+  foreach ($playlistarray as $playlist) {
+    echo 
+    '<form action="playlist.php" method="post">
+      <button type="submit" name="playlist_id" value="' . $playlist->getPlaylistID() .'">
+      <table>
+        <tr><td style="font-size:23px; font-weight:bold; padding:10px">' . $playlist->getPlaylistName() . '</td></tr>
+        <tr><td><img src="' . $playlist->getImgFileName() . '"></td></tr>
+      </table>
+      </button>
+    </form>';
   }
   ?>
 
