@@ -20,8 +20,13 @@
         $email_confirm = htmlspecialchars($_POST['confirm_address']);
         if (filter_var($newEmail, FILTER_VALIDATE_EMAIL) && filter_var($email_confirm, FILTER_VALIDATE_EMAIL)) {
           if ($newEmail == $email_confirm) {
-            updateEmail($usernameToSearchFor, $newEmail);
-            echo '<h2>Email updated!</h2>';
+            if (updateEmail($usernameToSearchFor, $newEmail)) {
+              echo '<h2>Email updated!</h2>';
+            } else {
+              //Something went wrong with db
+              header('Location: edit-profile.php?errcode=0');
+              exit;
+            }
           } else {
             //Email & email confirmation does not match.
             header('Location: edit-profile.php?errcode=1');
@@ -46,8 +51,13 @@
         if (validateUsernamePassword($usernameToSearchFor, $currentPassword)) {
           if (pwPassRegex($newPassword) && pwPassRegex($newPassword_confirm)) {
             if ($newPassword == $newPassword_confirm) {
-              updatePassword($usernameToSearchFor, $newPassword);
-              echo '<h2>Password updated!</h2>';
+              if (updatePassword($usernameToSearchFor, $newPassword)) {
+                echo '<h2>Password updated!</h2>';
+              } else {
+                //Something went wrong with db
+                header('Location: edit-profile.php?errcode=8');
+                exit;
+              }
             } else {
               //New password & password confirmation does not match
               header('Location: edit-profile.php?errcode=4');

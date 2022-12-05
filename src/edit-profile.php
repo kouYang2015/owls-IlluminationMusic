@@ -15,6 +15,9 @@
     <?php 
     if (isset($_GET['errcode'])) {
         switch($_GET['errcode']) {
+        case(0):
+            echo '<h3 class="errorText">Something went wrong! Try again.</h3>';
+            break;
         case(1):
             echo '<h3 class="errorText">Email & email confirmation does not match!</h3>';
             break;
@@ -67,6 +70,9 @@
                 break;
             case(7):
                 echo '<h3 class="errorText">One or more fields empty!</h3>';
+                break;
+            case(8):
+                echo '<h3 class="errorText">Something went wrong! Try again.</h3>';
                 break;
             default:
                 break;
