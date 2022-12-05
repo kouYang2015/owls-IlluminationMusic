@@ -1,5 +1,5 @@
 <?php
-  class playlist
+  class Playlist
   {
     private $playlist_ids;
     private $playlist_names;
