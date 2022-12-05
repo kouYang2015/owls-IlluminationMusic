@@ -33,8 +33,7 @@ function updatePassword($usernameToSearchFor, $newPassword)
     //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
     @$db = mysqli_connect("localhost", "root", "", "illumination_local"); //Use when working offline and locally
     if (mysqli_connect_errno()) {
-        echo "<p>Error: Could not update password.<br/>
-          Please try again later.</p>";
+        return false;
         exit;
     }
     $query = "UPDATE users SET user_password = ? WHERE username = ?";
@@ -42,13 +41,14 @@ function updatePassword($usernameToSearchFor, $newPassword)
     $stmt->bind_param('ss', $newPassword, $usernameToSearchFor);
     $stmt->execute();
     if ($stmt->affected_rows > 0) {
-        echo '<p>Succefully updated password!</p>';
+        $stmt->free_result();
+        $db->close();
+        return true;
     } else {
-        echo '<p>An error has occurred.</p><br/>';
-        echo '<p>Could update password.</p>';
+        $stmt->free_result();
+        $db->close();
+        return false;
     }
-
-    $db->close();
 }
 
 function updateEmail($usernameToSearchFor, $newEmail)
@@ -56,8 +56,7 @@ function updateEmail($usernameToSearchFor, $newEmail)
     //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
     @$db = mysqli_connect("localhost", "root", "", "illumination_local"); //Use when working offline and locally
     if (mysqli_connect_errno()) {
-        echo "<p>Error: Could not update email.<br/>
-              Please try again later.</p>";
+        return false;
         exit;
     }
     $query = "UPDATE users SET user_email = ? WHERE username = ?";
@@ -66,11 +65,36 @@ function updateEmail($usernameToSearchFor, $newEmail)
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
-        echo '<p>Succefully updated email!</p>';
-        echo '<p>New email:' . $newEmail . ' set for ' . $usernameToSearchFor . '</p><br>';
+        $stmt->free_result();
+        $db->close();
+        return true;
     } else {
-        echo '<p>An error has occurred.</p><br/>';
-        echo '<p>Could update email.</p>';
+        $stmt->free_result();
+        $db->close();
+        return false;
+    }
+}
+
+function updateProfileImg ($username, $imgfilepath) {
+    //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+    $db = new mysqli("localhost", "root", "", "illumination_local");
+    if (mysqli_connect_errno()) {
+        return false;
+        exit;
+    }
+    $query = "UPDATE user_profile_images, users SET profile_image_filename = ? WHERE (username = ?) ";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param('ss', $imgfilepath, $username);
+    $stmt->execute();
+
+    if ($stmt->affected_rows > 0) {
+        $stmt->free_result();
+        $db->close();
+        return true;
+    } else {
+        $stmt->free_result();
+        $db->close();
+        return false;
     }
 }
 
@@ -79,8 +103,7 @@ function validateUsernameEmail($login_user)
     //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
     $db = new mysqli("localhost", "root", "", "illumination_local");
     if (mysqli_connect_errno()) {
-        echo "<p>Could not validate user<br/>
-              Please try again later.</p>";
+        return false;
         exit;
     }
     $login_user2 = $login_user;
@@ -91,13 +114,16 @@ function validateUsernameEmail($login_user)
     $stmt->store_result();
     $stmt->bind_result($fetched_username, $fetched_useremail);
 
-    $validated = false;
     while ($stmt->fetch()) {
         if ($fetched_username == $login_user || $fetched_useremail == $login_user) {
-            $validated = true;
+            $stmt->free_result();
+            $db->close();
+            return true;
         }
     }
-    return $validated;
+    $stmt->free_result();
+    $db->close();
+    return false;
 }
 
 function validateUsernamePassword($username, $password)
@@ -105,8 +131,7 @@ function validateUsernamePassword($username, $password)
     //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
     $db = new mysqli("localhost", "root", "", "illumination_local");
     if (mysqli_connect_errno()) {
-        echo "<p>Could not validate password<br/>
-        Please try again later.</p>";
+        return false;
         exit;
     }
 
@@ -116,13 +141,16 @@ function validateUsernamePassword($username, $password)
     $stmt->execute();
     $stmt->store_result();
     $stmt->bind_result($user_password);
-    $validated = false;
     while ($stmt->fetch()) {
         if ($user_password == $password) {
-            $validated = true;
+            $stmt->free_result();
+            $db->close();
+            return true;
         }
     }
-    return $validated;
+    $stmt->free_result();
+    $db->close();
+    return false;
 }
 
 function validateEmailPassword($email, $password)
@@ -130,8 +158,7 @@ function validateEmailPassword($email, $password)
     //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
     $db = new mysqli("localhost", "root", "", "illumination_local");
     if (mysqli_connect_errno()) {
-        echo "<p>Could not validate password<br/>
-        Please try again later.</p>";
+        return false;
         exit;
     }
 
@@ -141,11 +168,58 @@ function validateEmailPassword($email, $password)
     $stmt->execute();
     $stmt->store_result();
     $stmt->bind_result($user_password);
-    $validated = false;
     while ($stmt->fetch()) {
         if ($user_password == $password) {
-            $validated = true;
+            $stmt->free_result();
+            $db->close();
+            return true;
         }
     }
-    return $validated;
+    $stmt->free_result();
+    $db->close();
+    return false;
+}
+
+function retrieveProfileImg($username) {
+    //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+    $db = new mysqli("localhost", "root", "", "illumination_local");
+    if (mysqli_connect_errno()) {
+    return null;
+    } else {
+        $query = "SELECT profile_image_filename FROM user_profile_images 
+        right join users on user_profile_images.user_id = users.user_id WHERE (username = ?) ";
+        $stmt = $db->prepare($query);
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $userimagename = $result->fetch_row();
+        $stmt->free_result();
+        $db->close();
+        if (is_array($userimagename) && $userimagename[0] != null) {
+            return $userimagename[0];
+        } else {
+            return null;
+        }
+    }
+}
+
+function retrieveEmail($username){
+    //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+    $db = new mysqli("localhost", "root", "", "illumination_local");
+    if (mysqli_connect_errno()) {
+        echo '<p>Error: Could not connect to database. Please try again later.</p>';
+        exit;
+    }
+    $user_email = "";
+    $query = "SELECT user_email FROM users WHERE (username = ?)";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param('s', $username);
+    $stmt->execute();
+    $stmt->store_result();
+
+    $stmt->bind_result($user_email);
+    $stmt->fetch();
+    $stmt->free_result();
+    $db->close();
+    return $user_email;
 }

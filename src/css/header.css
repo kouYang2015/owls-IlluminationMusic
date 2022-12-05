@@ -22,7 +22,7 @@ img {
 
 .navbar-container-left a {
   font-size: 20px;
-  color: rgb(38, 38, 38);
+  color: #000000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,14 +48,12 @@ img {
 }
 
 .dropdown:hover .dropbtn {
-  background-color: white;
   font-weight: bold;
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
@@ -94,8 +92,10 @@ img {
 }
 .loginButton {
   background-color: #81c784;
+  color: #001822;
 }
 
 .signupButton {
   background-color: #b2ebf2;
+  color: #001822;
 }
