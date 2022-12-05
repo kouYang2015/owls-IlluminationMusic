@@ -1,5 +1,6 @@
 <?php
 include 'song.php';
+include 'playlist_class.php';
 function insertNewUser($username, $first_name, $last_name, $newEmail, $user_password)
 {
     //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
@@ -75,7 +76,8 @@ function updateEmail($usernameToSearchFor, $newEmail)
     }
 }
 
-function updateProfileImg ($username, $imgfilepath) {
+function updateProfileImg($username, $imgfilepath)
+{
     //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
     $db = new mysqli("localhost", "root", "", "illumination_local");
     if (mysqli_connect_errno()) {
@@ -180,11 +182,12 @@ function validateEmailPassword($email, $password)
     return false;
 }
 
-function retrieveProfileImg($username) {
+function retrieveProfileImg($username)
+{
     //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
     $db = new mysqli("localhost", "root", "", "illumination_local");
     if (mysqli_connect_errno()) {
-    return null;
+        return null;
     } else {
         $query = "SELECT profile_image_filename FROM user_profile_images 
         right join users on user_profile_images.user_id = users.user_id WHERE (username = ?) ";
@@ -203,36 +206,45 @@ function retrieveProfileImg($username) {
     }
 }
 
-function retrieveEmail($username){
-    //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
-    $db = new mysqli("localhost", "root", "", "illumination_local");
-    if (mysqli_connect_errno()) {
-        echo '<p>Error: Could not connect to database. Please try again later.</p>';
-        exit;
-    }
-    $user_email = "";
-    $query = "SELECT user_email FROM users WHERE (username = ?)";
-    $stmt = $db->prepare($query);
-    $stmt->bind_param('s', $username);
-    $stmt->execute();
-    $stmt->store_result();
-
-    $stmt->bind_result($user_email);
-    $stmt->fetch();
-    $stmt->free_result();
-    $db->close();
-    return $user_email;
-}
-
-function retrieveSongsGenre($genre) {
+function retrievePlaylists($username)
+{
     //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
     $db = new mysqli("localhost", "root", "", "illumination_local");
     if (mysqli_connect_errno()) {
         return null;
         exit;
     }
-    $query = 
-    "SELECT
+    $query = "SELECT playlists.playlist_id, playlists.playlist_name, playlist_images.playlist_image_filename
+    FROM playlists
+    INNER JOIN playlist_images ON playlists.playlist_id = playlist_images.playlist_id
+    INNER JOIN users ON users.user_id = playlists.user_id
+    WHERE username = ?";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param('s', $username);
+    $stmt->execute();
+    $stmt->store_result();
+    $stmt->bind_result($fetched_playlist_id, $fetched_playlist_name, $fetched_imgfilename);
+
+    $playlists = array();
+    while ($stmt->fetch()) {
+        $playlist_object = new Playlist($fetched_playlist_id, $fetched_playlist_name, $fetched_imgfilename);
+        array_push($playlists, $playlist_object);
+    }
+    $stmt->free_result();
+    $db->close();
+    return $playlists;
+}
+
+function retrieveSongsGenre($genre)
+{
+    //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+    $db = new mysqli("localhost", "root", "", "illumination_local");
+    if (mysqli_connect_errno()) {
+        return null;
+        exit;
+    }
+    $query =
+        "SELECT
         songs.song_id,
         title,
         albums.album_name,
@@ -262,15 +274,16 @@ function retrieveSongsGenre($genre) {
     return $retrieved_songs;
 }
 
-function retrieveSongsAlbum($album) {
+function retrieveSongsAlbum($album)
+{
     //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
     $db = new mysqli("localhost", "root", "", "illumination_local");
     if (mysqli_connect_errno()) {
         return null;
         exit;
     }
-    $query = 
-    "SELECT
+    $query =
+        "SELECT
         songs.song_id,
         title,
         albums.album_name,
@@ -298,14 +311,15 @@ function retrieveSongsAlbum($album) {
     return $retrieved_songs;
 }
 
-function retrieveSongsArtist($artist){
-        //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
-        $db = new mysqli("localhost", "root", "", "illumination_local");
-        if (mysqli_connect_errno()) {
-            return null;
-            exit;
-        }
-        $query = 
+function retrieveSongsArtist($artist)
+{
+    //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+    $db = new mysqli("localhost", "root", "", "illumination_local");
+    if (mysqli_connect_errno()) {
+        return null;
+        exit;
+    }
+    $query =
         "SELECT
             songs.song_id,
             title,
@@ -318,31 +332,32 @@ function retrieveSongsArtist($artist){
         INNER JOIN artists ON artists.artist_id = song_has_artist.artist_id
         WHERE
             artists.artist_name = ?";
-        $stmt = $db->prepare($query);
-        $stmt->bind_param('s', $artist);
-        $stmt->execute();
-        $stmt->store_result();
-        $stmt->bind_result($song_id, $song_title, $song_album, $song_artist);
-    
-        $retrieved_songs = array();
-        while ($stmt->fetch()) {
-            $song = new Song($song_id, $song_title, $song_album, $song_artist);
-            array_push($retrieved_songs, $song);
-        }
-        $stmt->free_result();
-        $db->close();
-        return $retrieved_songs;
+    $stmt = $db->prepare($query);
+    $stmt->bind_param('s', $artist);
+    $stmt->execute();
+    $stmt->store_result();
+    $stmt->bind_result($song_id, $song_title, $song_album, $song_artist);
+
+    $retrieved_songs = array();
+    while ($stmt->fetch()) {
+        $song = new Song($song_id, $song_title, $song_album, $song_artist);
+        array_push($retrieved_songs, $song);
+    }
+    $stmt->free_result();
+    $db->close();
+    return $retrieved_songs;
 }
 
-function retrieveSongsLang($lang){
+function retrieveSongsLang($lang)
+{
     //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
     $db = new mysqli("localhost", "root", "", "illumination_local");
     if (mysqli_connect_errno()) {
         return null;
         exit;
     }
-    $query = 
-    "SELECT
+    $query =
+        "SELECT
         songs.song_id,
         title,
         albums.album_name,
@@ -371,14 +386,15 @@ function retrieveSongsLang($lang){
     return $retrieved_songs;
 }
 
-function retrieveSongsYear($year_max,$year_min){
-        //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
-        $db = new mysqli("localhost", "root", "", "illumination_local");
-        if (mysqli_connect_errno()) {
-            return null;
-            exit;
-        }
-        $query = 
+function retrieveSongsYear($year_max, $year_min)
+{
+    //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+    $db = new mysqli("localhost", "root", "", "illumination_local");
+    if (mysqli_connect_errno()) {
+        return null;
+        exit;
+    }
+    $query =
         "SELECT
             songs.song_id,
             title,
@@ -391,20 +407,20 @@ function retrieveSongsYear($year_max,$year_min){
         INNER JOIN artists ON artists.artist_id = song_has_artist.artist_id
         WHERE
             songs.release_year BETWEEN ? AND ?";
-        $stmt = $db->prepare($query);
-        $stmt->bind_param('ss', $year_min, $year_max);
-        $stmt->execute();
-        $stmt->store_result();
-        $stmt->bind_result($song_id, $song_title, $song_album, $song_artist);
-    
-        $retrieved_songs = array();
-        while ($stmt->fetch()) {
-            $song = new Song($song_id, $song_title, $song_album, $song_artist);
-            array_push($retrieved_songs, $song);
-        }
-        $stmt->free_result();
-        $db->close();
-        return $retrieved_songs;
+    $stmt = $db->prepare($query);
+    $stmt->bind_param('ss', $year_min, $year_max);
+    $stmt->execute();
+    $stmt->store_result();
+    $stmt->bind_result($song_id, $song_title, $song_album, $song_artist);
+
+    $retrieved_songs = array();
+    while ($stmt->fetch()) {
+        $song = new Song($song_id, $song_title, $song_album, $song_artist);
+        array_push($retrieved_songs, $song);
+    }
+    $stmt->free_result();
+    $db->close();
+    return $retrieved_songs;
 }
 
 function insertNewPlaylist($username ,$playlist_to_save) {

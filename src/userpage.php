@@ -9,7 +9,7 @@
 
 <body>
   <?php include 'header.php'; ?>
-
+  <?php include 'database.php'; ?>
 
   <h1>Your Playlists</h1>
   <form action="search-action-page" class="searchPlaylist">
@@ -18,46 +18,21 @@
     <br><br>
   </form>
 
+  <?php
+  $playlistarray = retrievePlaylists($_SESSION['username']);
 
-  <table class="playlist" style="width: 90%">
-    <tr>
-      <td style="font-size:23px; font-weight:bold; padding:10px">Park Hangs</td>
-      <td style="font-size:23px; font-weight:bold; padding:10px">Park Hangs</td>
-      <td style="font-size:23px; font-weight:bold; padding:10px">Park Hangs</td>
-      <td style="font-size:23px; font-weight:bold; padding:10px">Park Hangs</td>
-    </tr>
-    <tr>
-      <th class="title"><a href="samplePlaylist.html"><img src="https://cdn.pixabay.com/photo/2017/05/09/10/03/music-2297759_960_720.png" style="width:200px; height:200px;"></a></th>
-      <th class="title"><a href="samplePlaylist.html"><img src="https://cdn.pixabay.com/photo/2017/05/09/10/03/music-2297759_960_720.png" style="width:200px; height:200px;"></a></th>
-      <th class="title"><a href="samplePlaylist.html"><img src="https://cdn.pixabay.com/photo/2017/05/09/10/03/music-2297759_960_720.png" style="width:200px; height:200px;"></a></th>
-      <th class="title"><a href="samplePlaylist.html"><img src="https://cdn.pixabay.com/photo/2017/05/09/10/03/music-2297759_960_720.png" style="width:200px; height:200px;"></a></th>
-    </tr>
-    <tr>
-      <td style="font-size:20px; padding:10px"><a href="#delete">Delete</a></td>
-      <td style="font-size:20px; padding:10px"><a href="#delete">Delete</a></td>
-      <td style="font-size:20px; padding:10px"><a href="#delete">Delete</a></td>
-      <td style="font-size:20px; padding:10px"><a href="#delete">Delete</a></td>
-    </tr>
-    <tr>
-      <td style="font-size:23px; font-weight:bold; padding:10px">Park Hangs</td>
-      <td style="font-size:23px; font-weight:bold; padding:10px">Park Hangs</td>
-      <td style="font-size:23px; font-weight:bold;  padding:10px">Park Hangs</td>
-      <td style="font-size:23px; font-weight:bold; padding:10px">Park Hangs</td>
-    </tr>
-    <tr>
-      <th class="title"><a href="samplePlaylist.html"><img src="https://cdn.pixabay.com/photo/2017/05/09/10/03/music-2297759_960_720.png" style="width:200px; height:200px;"></a></th>
-      <th class="title"><a href="samplePlaylist.html"><img src="https://cdn.pixabay.com/photo/2017/05/09/10/03/music-2297759_960_720.png" style="width:200px; height:200px;"></a></th>
-      <th class="title"><a href="samplePlaylist.html"><img src="https://cdn.pixabay.com/photo/2017/05/09/10/03/music-2297759_960_720.png" style="width:200px; height:200px;"></a></th>
-      <th class="title"><a href="samplePlaylist.html"><img src="https://cdn.pixabay.com/photo/2017/05/09/10/03/music-2297759_960_720.png" style="width:200px; height:200px;"></a></th>
-    </tr>
-    <tr>
-      <td style="font-size:20px; padding:10px"><a href="#delete">Delete</a></td>
-      <td style="font-size:20px; padding:10px"><a href="#delete">Delete</a></td>
-      <td style="font-size:20px; padding:10px"><a href="#delete">Delete</a></td>
-      <td style="font-size:20px; padding:10px"><a href="#delete">Delete</a></td>
-    </tr>
-
-
+  foreach ($playlistarray as $playlist) {
+    echo 
+    '<form action="playlist.php" method="post">
+      <button type="submit" name="playlist_id" value="' . $playlist->getPlaylistID() .'">
+      <table>
+        <tr><td style="font-size:23px; font-weight:bold; padding:10px">' . $playlist->getPlaylistName() . '</td></tr>
+        <tr><td><img src="' . $playlist->getImgFileName() . '"></td></tr>
+      </table>
+      </button>
+    </form>';
+  }
+  ?>
 
 </body>
 

@@ -31,24 +31,6 @@ class Song
   {
     return $this->album;
   }
-
-
-  public function setID()
-  {
-    return $this->songID;
-  }
-  public function setTitle()
-  {
-    return $this->songTitle;
-  }
-  public function setArtists()
-  {
-    return $this->artists;
-  }
-  public function setAlbum()
-  {
-    return $this->album;
-  }
 }
 
 ?>
