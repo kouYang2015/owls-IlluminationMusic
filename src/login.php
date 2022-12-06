@@ -36,17 +36,11 @@
         <tr>
           <th>Username/Email:</th>
           <td>
-            <input type="text" 
-            name="login_user" 
-            size="50" 
-            placeholder="Enter your username/email address" 
-            required="true" 
-            <?php
-              if (isset($_GET['login_user'])) {
-                echo 'value = "' . htmlspecialchars($_GET['login_user']) . '"';
-            }
-            ?>
-            />
+            <input type="text" name="login_user" size="50" placeholder="Enter your username/email address" required="true" <?php
+                                                                                                                            if (isset($_GET['login_user'])) {
+                                                                                                                              echo 'value = "' . htmlspecialchars($_GET['login_user']) . '"';
+                                                                                                                            }
+                                                                                                                            ?> />
           </td>
         </tr>
         <tr>
@@ -64,6 +58,7 @@
   <br />
   <div class="forgot_password">
     <a href="forgot-password.php">Register</a>
+    </br>
     <a href="forgot-password.php">Reset Password</a>
   </div>
 </body>
