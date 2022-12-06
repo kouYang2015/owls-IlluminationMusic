@@ -18,23 +18,21 @@
     }
     $userimgfilepath = retrieveProfileImg($_SESSION['username']);
     if ($userimgfilepath != null){
-      echo '<img src=" '. $userimgfilepath . '" height=180 width=180 />';
+      echo '<img class="profile-img" src=" '. $userimgfilepath . '"/>';
     } else {
-      echo '<img src="images/illumination_logo.png" height=180 width=180 />';
+      echo '<img class="profile-img" src="images/illumination_logo.png"/>';
     }
     ?>
   </div>
-  <div class="upload">
+  <div class="upload-container">
     <form action="user_setting.php" method="post" enctype="multipart/form-data">
       <input type="file" name="fileToUpload">
+    </br>
       <input type="submit" value="Upload Image" name="submit">
     </form>
-  </div>
-  <i><p style="font-family:arial; font-size:20px; text-align:center">User Name: <?php echo $_SESSION['username']?></p></i>
-  <i><p style="font-family:arial; font-size:20px; text-align:center">Email: <?php echo retrieveEmail($_SESSION['username'])?></p></i>
-  <br>
-  <div style="text-align: center">
-    <a href="edit-profile.php"><button type="submit" class="edit" id="edit" value="Edit Profile">Edit Profile</button></a>
+    <i><p>User Name: <?php echo $_SESSION['username']?></p></i>
+    <i><p>Email: <?php echo retrieveEmail($_SESSION['username'])?></p></i>
+    <a href="edit-profile.php"><button type="submit" class="buttonContainer" id="edit" value="Edit Profile">Edit Profile</button></a>
   </div>
 
 </body>
