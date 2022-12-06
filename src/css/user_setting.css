@@ -6,10 +6,12 @@ h1 {
   text-align: center;
 }
 .profile_icon img {
+  width: 250px;
+  height: 250px;
   max-width: 20%;
   max-height: 20%;
-  min-width: 20%;
-  min-height: 20%;
+  min-width: 10%;
+  min-height: 10%;
 }
 .upload-container {
   text-align: center;
