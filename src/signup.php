@@ -4,6 +4,7 @@
 <head>
   <title>Illumination Music - Signup</title>
   <link rel="stylesheet" type="text/css" href="css/theme.css" />
+  <link rel="stylesheet" type="text/css" href="css/signup.css" />
 </head>
 
 <body>
