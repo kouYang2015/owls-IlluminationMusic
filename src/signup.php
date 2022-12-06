@@ -4,6 +4,7 @@
 <head>
   <title>Illumination Music - Signup</title>
   <link rel="stylesheet" type="text/css" href="css/theme.css" />
+  <link rel="stylesheet" type="text/css" href="css/signup.css" />
 </head>
 
 <body>
@@ -59,7 +60,6 @@
           </td>
         </tr>
       </table>
-      <br /><br />
       <input class="savework" type="submit" name="requestPassword" value="Create Account" />
     </form>
   </div>
