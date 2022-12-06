@@ -1,13 +1,17 @@
 html {
-  margin: 0;
   height: 100%;
+  width: 100%;
+  background: linear-gradient(#00293a, #9198e5);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 body {
+  height: 100%;
+  width: 100%;
   font-family: "Fredoka One";
   letter-spacing: 2px;
   font-size: 20px;
   margin: 0;
-  height: 100%;
 }
 
 .smallfont {
@@ -30,7 +34,10 @@ table.rightAlignTD:first-child td {
   font-family: "Fredoka One";
   letter-spacing: 2px;
 }
-button {
+button,
+input[type="submit"],
+input[type="button"],
+input[type="reset"] {
   cursor: pointer;
 }
 h1 {
