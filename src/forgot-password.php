@@ -4,37 +4,6 @@
 <head>
   <title>Illumination Music - Forgot Password</title>
   <link rel="stylesheet" type="text/css" href="css/theme.css" />
-  <style>
-    .smallfont {
-      font-size: 18px;
-    }
-
-    .savework {
-      font-size: 19px;
-      border-radius: 30px;
-      padding: 6px 2%;
-      cursor: pointer;
-      background-color: #90EE90;
-      font-weight: bold;
-    }
-
-    .savework:active {
-      background-color: #90EE90;
-      transform: translateY(4px);
-    }
-
-    td {
-      padding: 13px;
-    }
-
-    input[type=text] {
-      font-size: 20px;
-    }
-
-    input[type=number] {
-      font-size: 20px;
-    }
-  </style>
 </head>
 
 <body>
