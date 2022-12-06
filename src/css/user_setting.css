@@ -5,25 +5,52 @@ h1 {
 .profile_icon {
   text-align: center;
 }
-
-.upload {
+.profile_icon img {
+  max-width: 20%;
+  max-height: 20%;
+  min-width: 20%;
+  min-height: 20%;
+}
+.upload-container {
   text-align: center;
 }
-
-.edit {
-  border-radius: 30px;
+.upload-container input[type="file"] {
+  text-align: center;
   font-size: 18px;
-  padding: 8px 1%;
+  width: fit-content;
+  max-width: 350px;
+  min-width: 250px;
+  font-family: "Fredoka One";
+  letter-spacing: 2px;
 }
 
-.deletebtn {
-  background-color: red;
-  border-radius: 30px;
+input::file-selector-button {
+  text-align: center;
   font-size: 18px;
-  padding: 8px 1%;
+  width: fit-content;
+  font-family: "Fredoka One";
+  letter-spacing: 2px;
+  border-style: solid;
+  cursor: pointer;
 }
-.deletebtn:active {
-  background-color: #ff8a84;
+
+.upload-container input[type="submit"] {
+  text-align: center;
+  border-radius: 20px;
+  font-size: 18px;
+  width: fit-content;
+  max-width: 350px;
+  min-width: 200px;
+  font-family: "Fredoka One";
+  letter-spacing: 2px;
+}
+.upload-container input {
+  margin: 15px auto 15px auto;
+  cursor: pointer;
+}
+.buttonContainer {
+  max-width: 350px;
+  min-width: 200px;
 }
 .errorText {
   color: red;
