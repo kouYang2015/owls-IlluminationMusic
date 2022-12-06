@@ -1,0 +1,25 @@
+.savework {
+  font-size: 19px;
+  font-family: "Fredoka One";
+  padding-block: 5px;
+  border-radius: 30px;
+  cursor: pointer;
+  outline: none;
+  color: black;
+  background-color: #add8e6;
+  margin-top: 10px;
+}
+
+.savework:active {
+  background-color: #add8e6;
+  box-shadow: 0 2px #666;
+  transform: translateY(4px);
+}
+
+td {
+  padding-top: 15px;
+}
+
+input[type="text"] {
+  font-size: 18px;
+}
