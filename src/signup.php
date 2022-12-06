@@ -59,6 +59,7 @@
           </td>
         </tr>
       </table>
+      <br /><br />
       <input class="savework" type="submit" name="requestPassword" value="Create Account" />
     </form>
   </div>
