@@ -38,3 +38,6 @@ h1 {
   font-family: "Fredoka One";
   letter-spacing: 5px;
 }
+.errorText {
+  color: red;
+}

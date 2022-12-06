@@ -2,38 +2,33 @@
 include 'song.php';
 include 'playlist_class.php';
 include 'secrets.php';
-function insertNewUser($username, $first_name, $last_name, $newEmail, $user_password)
+function insertNewUser($new_username, $first_name, $last_name, $newEmail, $user_password)
 {
-    @$db = mysqli_connect($GLOBALS['hostname'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['database']); // Use when using metrostate server
-    
+    @$db = mysqli_connect($GLOBALS['db_hostname'], $GLOBALS['db_username'], $GLOBALS['db_password'], $GLOBALS['db_database']);
+    $successFlag = false;
     if (mysqli_connect_errno()) {
-        echo "<p>Error: Could not register user.<br/>
-          Please try again later.</p>";
+        return $successFlag;
         exit;
     }
     $query = "INSERT INTO users(username, first_name, last_name, user_email, user_password)
     VALUES(?, ?, ?, ?, ?)";
     $stmt = $db->prepare($query);
-    $stmt->bind_param('sssss', $username, $first_name, $last_name, $newEmail, $user_password);
+    $stmt->bind_param('sssss', $new_username, $first_name, $last_name, $newEmail, $user_password);
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
-        echo 'Username: ' . $username . '<br>';
-        echo 'First name: ' . $first_name . '<br>';
-        echo 'Last name: ' . $last_name . '<br>';
-        echo 'Email: ' . $newEmail . '<br>';
+        $successFlag = true;
     } else {
-        echo "<p>An error has occurred.<br/>
-           Could not sign up.</p>";
+        $successFlag = false;
     }
-
     $db->close();
+    return $successFlag;
 }
 
 function updatePassword($usernameToSearchFor, $newPassword)
 {
-    @$db = mysqli_connect($GLOBALS['hostname'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['database']); // Use when using metrostate server
-    
+    @$db = mysqli_connect($GLOBALS['db_hostname'], $GLOBALS['db_username'], $GLOBALS['db_password'], $GLOBALS['db_database']);
+
     if (mysqli_connect_errno()) {
         return false;
         exit;
@@ -55,8 +50,8 @@ function updatePassword($usernameToSearchFor, $newPassword)
 
 function updateEmail($usernameToSearchFor, $newEmail)
 {
-    @$db = mysqli_connect($GLOBALS['hostname'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['database']); // Use when using metrostate server
-    
+    @$db = mysqli_connect($GLOBALS['db_hostname'], $GLOBALS['db_username'], $GLOBALS['db_password'], $GLOBALS['db_database']);
+
     if (mysqli_connect_errno()) {
         return false;
         exit;
@@ -79,8 +74,8 @@ function updateEmail($usernameToSearchFor, $newEmail)
 
 function updateProfileImg($username, $imgfilepath)
 {
-    @$db = mysqli_connect($GLOBALS['hostname'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['database']); // Use when using metrostate server
-    
+    @$db = mysqli_connect($GLOBALS['db_hostname'], $GLOBALS['db_username'], $GLOBALS['db_password'], $GLOBALS['db_database']);
+
     if (mysqli_connect_errno()) {
         return false;
         exit;
@@ -103,8 +98,8 @@ function updateProfileImg($username, $imgfilepath)
 
 function validateUsernameEmail($login_user)
 {
-    @$db = mysqli_connect($GLOBALS['hostname'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['database']); // Use when using metrostate server
-    
+    @$db = mysqli_connect($GLOBALS['db_hostname'], $GLOBALS['db_username'], $GLOBALS['db_password'], $GLOBALS['db_database']);
+
     if (mysqli_connect_errno()) {
         return false;
         exit;
@@ -131,8 +126,8 @@ function validateUsernameEmail($login_user)
 
 function validateUsernamePassword($username, $password)
 {
-    @$db = mysqli_connect($GLOBALS['hostname'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['database']); // Use when using metrostate server
-    
+    @$db = mysqli_connect($GLOBALS['db_hostname'], $GLOBALS['db_username'], $GLOBALS['db_password'], $GLOBALS['db_database']);
+
     if (mysqli_connect_errno()) {
         return false;
         exit;
@@ -158,8 +153,8 @@ function validateUsernamePassword($username, $password)
 
 function validateEmailPassword($email, $password)
 {
-    @$db = mysqli_connect($GLOBALS['hostname'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['database']); // Use when using metrostate server
-    
+    @$db = mysqli_connect($GLOBALS['db_hostname'], $GLOBALS['db_username'], $GLOBALS['db_password'], $GLOBALS['db_database']);
+
     if (mysqli_connect_errno()) {
         return false;
         exit;
@@ -185,8 +180,8 @@ function validateEmailPassword($email, $password)
 
 function retrieveProfileImg($username)
 {
-    @$db = mysqli_connect($GLOBALS['hostname'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['database']); // Use when using metrostate server
-    
+    @$db = mysqli_connect($GLOBALS['db_hostname'], $GLOBALS['db_username'], $GLOBALS['db_password'], $GLOBALS['db_database']);
+
     if (mysqli_connect_errno()) {
         return null;
     } else {
@@ -209,8 +204,8 @@ function retrieveProfileImg($username)
 
 function retrievePlaylists($username)
 {
-    @$db = mysqli_connect($GLOBALS['hostname'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['database']); // Use when using metrostate server
-    
+    @$db = mysqli_connect($GLOBALS['db_hostname'], $GLOBALS['db_username'], $GLOBALS['db_password'], $GLOBALS['db_database']);
+
     if (mysqli_connect_errno()) {
         return null;
         exit;
@@ -238,8 +233,8 @@ function retrievePlaylists($username)
 
 function retrieveSongsGenre($genre)
 {
-    @$db = mysqli_connect($GLOBALS['hostname'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['database']); // Use when using metrostate server
-    
+    @$db = mysqli_connect($GLOBALS['db_hostname'], $GLOBALS['db_username'], $GLOBALS['db_password'], $GLOBALS['db_database']);
+
     if (mysqli_connect_errno()) {
         return null;
         exit;
@@ -277,8 +272,8 @@ function retrieveSongsGenre($genre)
 
 function retrieveSongsAlbum($album)
 {
-    @$db = mysqli_connect($GLOBALS['hostname'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['database']); // Use when using metrostate server
-    
+    @$db = mysqli_connect($GLOBALS['db_hostname'], $GLOBALS['db_username'], $GLOBALS['db_password'], $GLOBALS['db_database']);
+
     if (mysqli_connect_errno()) {
         return null;
         exit;
@@ -314,8 +309,8 @@ function retrieveSongsAlbum($album)
 
 function retrieveSongsArtist($artist)
 {
-    @$db = mysqli_connect($GLOBALS['hostname'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['database']); // Use when using metrostate server
-    
+    @$db = mysqli_connect($GLOBALS['db_hostname'], $GLOBALS['db_username'], $GLOBALS['db_password'], $GLOBALS['db_database']);
+
     if (mysqli_connect_errno()) {
         return null;
         exit;
@@ -351,8 +346,8 @@ function retrieveSongsArtist($artist)
 
 function retrieveSongsLang($lang)
 {
-    @$db = mysqli_connect($GLOBALS['hostname'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['database']); // Use when using metrostate server
-    
+    @$db = mysqli_connect($GLOBALS['db_hostname'], $GLOBALS['db_username'], $GLOBALS['db_password'], $GLOBALS['db_database']);
+
     if (mysqli_connect_errno()) {
         return null;
         exit;
@@ -389,8 +384,8 @@ function retrieveSongsLang($lang)
 
 function retrieveSongsYear($year_max, $year_min)
 {
-    @$db = mysqli_connect($GLOBALS['hostname'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['database']); // Use when using metrostate server
-    
+    @$db = mysqli_connect($GLOBALS['db_hostname'], $GLOBALS['db_username'], $GLOBALS['db_password'], $GLOBALS['db_database']);
+
     if (mysqli_connect_errno()) {
         return null;
         exit;
@@ -424,11 +419,12 @@ function retrieveSongsYear($year_max, $year_min)
     return $retrieved_songs;
 }
 
-function insertNewPlaylist($username ,$playlist_to_save) {
+function insertNewPlaylist($username, $playlist_to_save)
+{
     $userId = retrieveUserId($username);
     $playlist_name = "New Playlist";
-    @$db = mysqli_connect($GLOBALS['hostname'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['database']); // Use when using metrostate server
-    
+    @$db = mysqli_connect($GLOBALS['db_hostname'], $GLOBALS['db_username'], $GLOBALS['db_password'], $GLOBALS['db_database']);
+
     if (mysqli_connect_errno()) {
         echo "<p>Error: Could not register user.<br/>
           Please try again later.</p>";
@@ -459,7 +455,7 @@ function insertNewPlaylist($username ,$playlist_to_save) {
            Could not sign up.</p>";
     }
     $added_song = false;
-    foreach ($playlist_to_save as $song){
+    foreach ($playlist_to_save as $song) {
         $songId = $song->getID();
         $query = "INSERT INTO playlist_has_song(playlist_id, song_id) VALUES(?, ?)";
         $stmt = $db->prepare($query);
@@ -477,32 +473,35 @@ function insertNewPlaylist($username ,$playlist_to_save) {
     $db->close();
     return $added_song;
 }
-function updatePlaylist($playist_id, $playlist_to_save){
+function updatePlaylist($playist_id, $playlist_to_save)
+{
     echo 'IN progress';
 }
-function retrieveUserId ($username){
-    @$db = mysqli_connect($GLOBALS['hostname'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['database']); // Use when using metrostate server
-     
-     if (mysqli_connect_errno()) {
-         echo "<p>Error: Could not register user.<br/>
+function retrieveUserId($username)
+{
+    @$db = mysqli_connect($GLOBALS['db_hostname'], $GLOBALS['db_username'], $GLOBALS['db_password'], $GLOBALS['db_database']);
+
+    if (mysqli_connect_errno()) {
+        echo "<p>Error: Could not register user.<br/>
            Please try again later.</p>";
-         exit;
-     }
-     $query = "SELECT user_id FROM users WHERE username = ?";
-     $stmt = $db->prepare($query);
-     $stmt->bind_param('s', $username);
-     $stmt->execute();
-     $stmt->store_result();
- 
-     $stmt->bind_result($user_id);
-     $stmt->fetch();
-     $stmt->free_result();
-     $db->close();
-     return $user_id;
+        exit;
+    }
+    $query = "SELECT user_id FROM users WHERE username = ?";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param('s', $username);
+    $stmt->execute();
+    $stmt->store_result();
+
+    $stmt->bind_result($user_id);
+    $stmt->fetch();
+    $stmt->free_result();
+    $db->close();
+    return $user_id;
 }
-function retrievePlaylistObject($playlist_id){
-    @$db = mysqli_connect($GLOBALS['hostname'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['database']); // Use when using metrostate server
-    
+function retrievePlaylistObject($playlist_id)
+{
+    @$db = mysqli_connect($GLOBALS['db_hostname'], $GLOBALS['db_username'], $GLOBALS['db_password'], $GLOBALS['db_database']);
+
     if (mysqli_connect_errno()) {
         return null;
         exit;
@@ -523,15 +522,16 @@ function retrievePlaylistObject($playlist_id){
     $db->close();
     return $playlist_object;
 }
-function retreivePlaylist($playlist_id) {
-    @$db = mysqli_connect($GLOBALS['hostname'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['database']); // Use when using metrostate server
-    
+function retreivePlaylist($playlist_id)
+{
+    @$db = mysqli_connect($GLOBALS['db_hostname'], $GLOBALS['db_username'], $GLOBALS['db_password'], $GLOBALS['db_database']);
+
     if (mysqli_connect_errno()) {
         return null;
         exit;
     }
     $query =
-    "SELECT
+        "SELECT
         songs.song_id,
         songs.title,
         albums.album_name,
@@ -560,9 +560,10 @@ function retreivePlaylist($playlist_id) {
     return $retrieved_songs;
 }
 
-function retrieveEmail($username){
-    @$db = mysqli_connect($GLOBALS['hostname'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['database']); // Use when using metrostate server
-    
+function retrieveEmail($username)
+{
+    @$db = mysqli_connect($GLOBALS['db_hostname'], $GLOBALS['db_username'], $GLOBALS['db_password'], $GLOBALS['db_database']);
+
     if (mysqli_connect_errno()) {
         echo '<p>Error: Could not connect to database. Please try again later.</p>';
         exit;

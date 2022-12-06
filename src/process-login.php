@@ -17,22 +17,19 @@
       if (filter_var($login_user, FILTER_VALIDATE_EMAIL) && validateEmailPassword($login_user, $login_password)) {
         setSession();
         loginUser($_POST['login_user']);
-      } 
-      elseif (validateUsernamePassword($login_user, $login_password)) {
+      } elseif (validateUsernamePassword($login_user, $login_password)) {
         setSession();
         loginUser($_POST['login_user']);
-      } 
-      else {
-        header('Location: login.php?errcode=1&login_user='.$login_user);
+      } else {
+        header('Location: login.php?errcode=1&login_user=' . $login_user);
         exit;
       }
-    }
-    else {
-      header('Location: login.php?errcode=2&login_user='.$login_user);
+    } else {
+      header('Location: login.php?errcode=2&login_user=' . $login_user);
       exit;
     }
   } else {
-    header('Location: login.php?errcode=3&login_user='.$login_user);
+    header('Location: login.php?errcode=3&login_user=' . $login_user);
     exit;
   }
   include_once 'header.php';

@@ -11,6 +11,33 @@
   <?php include 'header.php'; ?>
   <h1 align="center">Signup</h1>
   <div align="center">
+    <?php
+    if (isset($_GET['errcode'])) {
+      switch ($_GET['errcode']) {
+        case (0):
+          echo '<h3 class="errorText">Something went wrong! Try again.</h3>';
+          break;
+        case (1):
+          echo '<h3 class="errorText">Missing some fields!</h3>';
+          break;
+        case (2):
+          echo '<h3 class="errorText">Email & email confirmation does not match.</h3>';
+          break;
+        case (3):
+          echo '<h3 class="errorText">Not valid email input!</h3>';
+          break;
+        case (4):
+          echo '<h3 class="errorText">New password & password confirmation does not match!</h3>';
+          break;
+        case (5):
+          echo '<h3 class="errorText">New password must be minimum eight characters and include at least one uppercase letter, 
+            one lowercase letter, one number and one special character (@$!%*?&)</h3>';
+          break;
+        default:
+          break;
+      }
+    }
+    ?>
     <span>Already have an account?</span>
     <a href="login.php">Log in</a>
     <form action="process-signup.php" method="POST">
