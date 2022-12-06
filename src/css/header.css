@@ -1,7 +1,7 @@
 .navbar {
-  height: 80px;
-  min-height: fit-content;
-  max-height: 80px;
+  height: 15px;
+  min-height: 150px;
+  max-height: 150px;
 }
 .navbar-homeIcon {
   height: 100px;
@@ -93,9 +93,11 @@ img {
 .loginButton {
   background-color: #81c784;
   color: #001822;
+  width: 100%;
 }
 
 .signupButton {
+  width: 100%;
   background-color: #b2ebf2;
   color: #001822;
 }
