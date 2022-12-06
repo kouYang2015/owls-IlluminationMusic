@@ -12,16 +12,16 @@
   <div>
     <h2>Login</h2>
   </div>
-  <?php 
+  <?php
   if (isset($_GET['errcode'])) {
-    switch($_GET['errcode']) {
-      case(1):
+    switch ($_GET['errcode']) {
+      case (1):
         echo '<strong>Failed to login! Username or password incorrect</strong>';
         break;
-      case(2):
+      case (2):
         echo '<strong>Username/email does not exist!</strong>';
         break;
-      case(3):
+      case (3):
         echo '<strong>Username/email or password missing!</strong>';
         break;
       default:
@@ -36,11 +36,15 @@
         <tr>
           <th>Username/Email:</th>
           <td>
-            <input type="text" name="login_user" size="50" placeholder="Enter your username/email address" required="true" 
-            <?php 
+            <input type="text" 
+            name="login_user" 
+            size="50" 
+            placeholder="Enter your username/email address" 
+            required="true" 
+            <?php
               if (isset($_GET['login_user'])) {
-                echo 'value = "'.htmlspecialchars($_GET['login_user']).'"';
-              }
+                echo 'value = "' . htmlspecialchars($_GET['login_user']) . '"';
+            }
             ?>
             />
           </td>
@@ -59,6 +63,7 @@
   </form>
   <br />
   <div class="forgot_password">
+    <a href="forgot-password.php">Register</a>
     <a href="forgot-password.php">Reset Password</a>
   </div>
 </body>
