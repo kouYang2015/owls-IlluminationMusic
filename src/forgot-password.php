@@ -4,6 +4,37 @@
 <head>
   <title>Illumination Music - Forgot Password</title>
   <link rel="stylesheet" type="text/css" href="css/theme.css" />
+  <style>
+    .smallfont {
+      font-size: 18px;
+    }
+
+    .savework {
+      font-size: 19px;
+      border-radius: 30px;
+      padding: 6px 2%;
+      cursor: pointer;
+      background-color: #90EE90;
+      font-weight: bold;
+    }
+
+    .savework:active {
+      background-color: #90EE90;
+      transform: translateY(4px);
+    }
+
+    td {
+      padding: 13px;
+    }
+
+    input[type=text] {
+      font-size: 20px;
+    }
+
+    input[type=number] {
+      font-size: 20px;
+    }
+  </style>
 </head>
 
 <body>
@@ -42,10 +73,12 @@
           </td>
         </tr>
       </table>
+      <br /><br />
       <input class="savework" type="submit" name="requestPassword" value="Request" />
     </form>
-    <a class="smallfont" href="login.php">Back to Login</a>
     <br />
+    <a class="smallfont" href="login.php">Back to Login</a>
+    <br /><br />
     <a class="smallfont" href="home.php">Go to Home</a>
   </div>
 </body>
