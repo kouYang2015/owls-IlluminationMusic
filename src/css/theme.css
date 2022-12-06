@@ -34,7 +34,10 @@ table.rightAlignTD:first-child td {
   font-family: "Fredoka One";
   letter-spacing: 2px;
 }
-button {
+button,
+input[type="submit"],
+input[type="button"],
+input[type="reset"] {
   cursor: pointer;
 }
 h1 {
