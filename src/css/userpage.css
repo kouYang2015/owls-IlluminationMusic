@@ -1,14 +1,19 @@
+.search-container {
+  text-align: center;
+  justify-content: center;
+  margin: 0 auto 0 auto;
+}
+
 form.searchPlaylist input[type="text"] {
   padding: 7px;
   font-size: 17px;
   border: 1px solid grey;
-  float: left;
-  width: 80%;
+  width: 200px;
+  height: 30px;
   background: #f1f1f1;
 }
 
 form.searchPlaylist button {
-  float: left;
   width: 5%;
   padding: 12px;
   background: #2196f3;
@@ -25,17 +30,34 @@ form.searchPlaylist button {
 }
 
 h1 {
+  text-align: center;
   font-size: 32px;
   display: inline-block;
-  float: left;
-  padding-right: 3%;
 }
 
-td {
-  text-align: center;
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  margin: 10px auto 10px auto;
+  width: 80%;
+}
+.grid-item {
+  display: flex;
+  justify-content: center;
+}
+.grid-item img {
+  min-width: 250px;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 250px;
 }
 
-body {
-  font-family: "Times New Roman", Times, serif;
+.grid-item p {
+  font-family: "Fredoka One";
+  letter-spacing: 2px;
   font-size: 20px;
+}
+.grid-container button {
+  background: inherit;
+  border-style: none;
 }

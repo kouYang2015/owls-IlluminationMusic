@@ -499,7 +499,29 @@ function retrieveUserId ($username){
      $db->close();
      return $user_id;
 }
-
+function retrievePlaylistObject($playlist_id){
+    //@$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+    $db = new mysqli("localhost", "root", "", "illumination_local");
+    if (mysqli_connect_errno()) {
+        return null;
+        exit;
+    }
+    $query = "SELECT playlists.playlist_id, playlists.playlist_name, playlist_images.playlist_image_filename
+    FROM playlists
+    INNER JOIN playlist_images ON playlists.playlist_id = playlist_images.playlist_id
+    WHERE playlists.playlist_id = ?";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param('i', $playlist_id);
+    $stmt->execute();
+    $stmt->store_result();
+    $stmt->bind_result($fetched_playlist_id, $fetched_playlist_name, $fetched_imgfilename);
+    while ($stmt->fetch()) {
+        $playlist_object = new Playlist($fetched_playlist_id, $fetched_playlist_name, $fetched_imgfilename);
+    }
+    $stmt->free_result();
+    $db->close();
+    return $playlist_object;
+}
 function retreivePlaylist($playlist_id) {
     @$db = mysqli_connect("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
     //$db = new mysqli("localhost", "root", "", "illumination_local");
@@ -535,4 +557,25 @@ function retreivePlaylist($playlist_id) {
     $stmt->free_result();
     $db->close();
     return $retrieved_songs;
+}
+
+function retrieveEmail($username){
+    //@$db = new mysqli("localhost", "ics325fa2226", "9427", "ics325fa2226"); // Use when using metrostate server
+    $db = new mysqli("localhost", "root", "", "illumination_local");
+    if (mysqli_connect_errno()) {
+        echo '<p>Error: Could not connect to database. Please try again later.</p>';
+        exit;
+    }
+    $user_email = "";
+    $query = "SELECT user_email FROM users WHERE (username = ?)";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param('s', $username);
+    $stmt->execute();
+    $stmt->store_result();
+
+    $stmt->bind_result($user_email);
+    $stmt->fetch();
+    $stmt->free_result();
+    $db->close();
+    return $user_email;
 }
