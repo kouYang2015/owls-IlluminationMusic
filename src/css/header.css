@@ -1,7 +1,13 @@
+header {
+  height: fit-content;
+  display: inline-flex;
+  width: 100%;
+}
 .navbar {
-  height: 15px;
-  min-height: 150px;
-  max-height: 150px;
+  height: fit-content;
+  display: inline-block;
+  flex: 0 0 100%; /* Let it fill the entire space horizontally */
+  width: 100%;
 }
 .navbar-homeIcon {
   height: 100px;
